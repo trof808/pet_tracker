@@ -1,5 +1,7 @@
 # Пет проект task tracker
 
+![example](https://github.com/trof808/pet_tracker/blob/main/demo.png)
+
 ## Требования
 
 node >= 20.*
