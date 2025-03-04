@@ -19,7 +19,7 @@ export const Primary: Story = {
   args: {
     id: "1",
     status: "backlog",
-    size: "normal",
+    size: "medium",
     tag: {
       title: "Работа",
       color: "red",
@@ -34,3 +34,60 @@ export const Primary: Story = {
 
 // Ниже можно делать другие вариации компонента просто изменив пропсы
 // Смотри пример в компонент Button
+
+export const Small: Story = {
+  args: {
+    id: "1",
+    status: "backlog",
+    size: "small",
+    tag: {
+      title: "Менторство",
+      color: "#73AFBC",
+    },
+    startDateTime: "2025-03-07T11:30:00Z",
+    endDateTime: "2025-03-07T12:30:00Z",
+    onClick: () => null,
+    onDelete: () => null,
+    onDone: () => null,
+  },
+};
+
+export const Large: Story = {
+  args: {
+    ...Small.args,
+    size: "large",
+  },
+};
+
+export const StatusDone: Story = {
+  args: {
+    ...Primary.args,
+    status: "done",
+    tag: {
+      title: "Менторство",
+      color: "#73AFBC",
+    },
+    startDateTime: "2025-03-07T22:30:00Z",
+    endDateTime: "2025-03-07T23:30:00Z",
+  },
+};
+
+export const StatusCanceled: Story = {
+  args: {
+    ...StatusDone.args,
+    status: "canceled",
+  },
+};
+
+
+export const WithoutTagAndDate: Story = {
+  args: {
+    ...Small.args,
+    tag: {
+      title: "",
+      color: "#73AFBC",
+    },
+    startDateTime: "",
+    endDateTime: "",
+  }
+}

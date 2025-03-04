@@ -1,3 +1,62 @@
 .container {
-    border: 1px solid;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #efefef;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Размеры карточек */
+.small, .medium, .large {
+    min-height: 15px;
+}
+
+.small {
+  font-size: 10px;
+}
+.medium {
+  font-size: 12px;
+}
+.large {
+  height: 90px;
+  font-size: 12px;
+}
+
+/* Поведение карточек  относительно статуса */
+.canceled {
+  background-color: #f7bdbd;
+}
+.done {
+  background-color: #caf1c7;
+}
+.backlog {
+  background-color: #efefef;
+}
+
+/* Заголовок карточки */
+.titleDecoration {
+  text-decoration: line-through;
+  color: gray;
+}
+.title {
+  font-weight: bold;
+}
+
+/* Детали карточки */
+.details {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+
+.tagIndicator {
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+}
+
+.title > .tagIndicator {
+    margin-right: 5px;
 }
