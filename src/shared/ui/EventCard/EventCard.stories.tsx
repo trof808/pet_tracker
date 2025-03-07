@@ -67,8 +67,8 @@ export const StatusDone: Story = {
       title: "Менторство",
       color: "#73AFBC",
     },
-    startDateTime: "2025-03-07T22:30:00Z",
-    endDateTime: "2025-03-07T23:30:00Z",
+    startDateTime: "2025-03-07T19:30:00Z",
+    endDateTime: "2025-03-07T20:30:00Z",
   },
 };
 
@@ -89,5 +89,17 @@ export const WithoutTagAndDate: Story = {
     },
     startDateTime: "",
     endDateTime: "",
+  }
+}
+
+export const WithoutTag: Story = {
+  args: {
+    ...Small.args,
+    tag: {
+      title: "",
+      color: '',
+    },
+    startDateTime: "2025-03-07T19:30:00Z",
+    endDateTime: "2025-03-07T20:30:00Z",
   }
 }

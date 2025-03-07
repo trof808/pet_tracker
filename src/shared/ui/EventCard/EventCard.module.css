@@ -1,3 +1,6 @@
+/* Todo: решить проблему с наложением кнопок на карточку, чтобы сохранять дизайн и они отрабатывали. тк сейчас из-за z-index: -1 - не работает */
+
+
 .container {
   padding: 10px;
   border-radius: 10px;
@@ -5,11 +8,16 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  color: black;
+
+  position: relative;
+  z-index: 0;
 }
 
 /* Размеры карточек */
 .small, .medium, .large {
     min-height: 15px;
+    font-family: 'Inter';
 }
 
 .small {
@@ -23,7 +31,7 @@
   font-size: 12px;
 }
 
-/* Поведение карточек  относительно статуса */
+/* Поведение карточек относительно статуса */
 .canceled {
   background-color: #f7bdbd;
 }
@@ -32,6 +40,48 @@
 }
 .backlog {
   background-color: #efefef;
+}
+
+/* Кнопки для карточек */
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.checkIcon {
+  margin-right: 5px;
+}
+
+.binIcon {
+  margin-left: 5px;
+}
+
+.doneButton, .deleteButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  position: absolute;
+  background-color: #E1E1E1;
+  height: 100%;
+  width: 25%;
+  top: 0;
+  border-radius: 0;
+  z-index: -1;
+  /* pointer-events: all; */
+  mix-blend-mode: lighten;
+}
+
+.doneButton {
+  left: -20%;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.deleteButton {
+  right: -20%;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
 /* Заголовок карточки */
