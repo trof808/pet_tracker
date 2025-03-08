@@ -57,6 +57,7 @@ export const EventCard = ({
   };
 
   const handleTouchMove = (e: any) => {
+    if (taskStatus === 'done' || taskStatus === 'canceled') return;
     if (touchStartX === 0) return;
 
     const touchMoveX = e.touches[0].clientX;
