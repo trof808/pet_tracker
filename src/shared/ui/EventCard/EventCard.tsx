@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { JSX, useState } from 'react';
 import styles from './EventCard.module.css';
 import checkIcon from './assets/check.svg';
 import binIcon from './assets/bin.svg';
@@ -43,7 +43,7 @@ export const EventCard = ({
   onClick,
   onDone,
   onDelete,
-}:  EventCardProps): any => {
+}:  EventCardProps): JSX.Element => {
   const [taskStatus, setTaskStatus] = useState(status);
   const [touchStartX, setTouchStartX] = useState(0);
   const [swipeDistance, setSwipeDistance] = useState(0);
@@ -52,11 +52,11 @@ export const EventCard = ({
 
   const minDistanceSwipe = 20;
 
-  const handleTouchStart = (e: any) => {
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     setTouchStartX(e.touches[0].clientX);
   };
 
-  const handleTouchMove = (e: any) => {
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     if (taskStatus === 'done' || taskStatus === 'canceled') return;
     if (touchStartX === 0) return;
 
@@ -65,7 +65,7 @@ export const EventCard = ({
     setSwipeDistance(distnace);
   };
 
-  const handleTouchEnd = () => {
+  const handleTouchEnd = (): void => {
     if (swipeDistance > minDistanceSwipe) {
       setDoneTask(true);
       setDeleteTask(false);
@@ -78,21 +78,21 @@ export const EventCard = ({
     setTouchStartX(0);
   };
 
-  const handleTaskDone = () => {
+  const handleTaskDone = (): void => {
     setTaskStatus('done');
     setDoneTask(false);
     setDeleteTask(false);
     onDone(id);
   }
 
-  const handleTaskDelete = () => {
+  const handleTaskDelete = (): void => {
     setTaskStatus('canceled');
     setDoneTask(false);
     setDeleteTask(false);
     onDelete(id);
   }
 
-  const handleCancelAction = () => {
+  const handleCancelAction = (): void => {
     if (taskStatus === 'done' || taskStatus === 'canceled') {
       setTaskStatus('backlog') 
     };
@@ -102,10 +102,11 @@ export const EventCard = ({
     onClick(id);
   }
 
-  const formattedDate = (isoDate: string | null) =>
-    isoDate
+  const formattedDate = (isoDate: string | null): string => {
+    return isoDate
       ? new Date(isoDate).toLocaleTimeString('ru', { timeStyle: 'short' })
       : '-';
+  };
 
   const statusTitle = taskStatus !== 'backlog' ? styles.titleDecoration : '';
 
