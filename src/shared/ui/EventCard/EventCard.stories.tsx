@@ -20,6 +20,7 @@ export const Primary: Story = {
     id: "1",
     status: "backlog",
     size: "medium",
+    cardTitle: 'Тех встреча. Обсуждаем форму поиска',
     tag: {
       title: "Работа",
       color: "red",
@@ -40,6 +41,7 @@ export const Small: Story = {
     id: "1",
     status: "backlog",
     size: "small",
+    cardTitle: 'Тех встреча. Обсуждаем форму поиска',
     tag: {
       title: "Менторство",
       color: "#73AFBC",
