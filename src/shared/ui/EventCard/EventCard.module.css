@@ -12,6 +12,8 @@
 
   position: relative;
   z-index: 0;
+
+  /* width: 100%; */
 }
 
 /* Размеры карточек */

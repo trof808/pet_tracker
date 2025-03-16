@@ -16,10 +16,13 @@ export type StartDateTime = string | null;
 
 export type EndDateTime = string | null;
 
+export type cardEvent = string;
+
 export type EventCardProps = {
   id: string;
   status: EventCardStatus;
   size: EventCardSize;
+  cardTitle: cardEvent;
   tag: TagType;
   startDateTime: StartDateTime;
   endDateTime: EndDateTime;
@@ -37,6 +40,7 @@ export const EventCard = ({
   id,
   status,
   size,
+  cardTitle,
   tag,
   startDateTime,
   endDateTime,
@@ -132,7 +136,7 @@ export const EventCard = ({
     >
       <div className={ `${styles.title} ${statusTitle}` }>
         {!hasDetails && !hasTime && tagIndicatorElem}
-        Тех встреча. Обсуждаем форму поиска
+        {cardTitle}
       </div>
       {doneTask && (
         <button className={ styles.doneButton } 
