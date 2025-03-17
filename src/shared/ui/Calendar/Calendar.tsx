@@ -38,7 +38,6 @@ export const Calendar = (): JSX.Element => {
         {cellsTime.map((_, index) => (
           <div className={ styles.timeSlot }  key={ index }>
             <div className={ styles.timeLabel }>{index}:00</div>
-            {/* <div className={ styles.eventContainer }>Array of events</div> */}
             <div className={ styles.eventContainer }>
               <EventCard
                 id="1"
