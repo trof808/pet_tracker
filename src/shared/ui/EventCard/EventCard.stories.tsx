@@ -7,6 +7,9 @@ const meta = {
   component: EventCard,
   parameters: {
     layout: "centered",
+    viewport: {
+      defaultViewport: "responsive", // Используйте 'responsive' для адаптивного дизайна
+    },
   },
   tags: ["autodocs"],
 } satisfies Meta<typeof EventCard>;
@@ -20,7 +23,7 @@ export const Primary: Story = {
     id: "1",
     status: "backlog",
     size: "medium",
-    cardTitle: 'Тех встреча. Обсуждаем форму поиска',
+    cardTitle: "Тех встреча. Обсуждаем форму поиска",
     tag: {
       title: "Работа",
       color: "red",
@@ -31,6 +34,13 @@ export const Primary: Story = {
     onDelete: () => null,
     onDone: () => null,
   },
+  decorators: [
+    (Story) => (
+      <div style={{ width: "200px", margin: "0 auto" }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 // Ниже можно делать другие вариации компонента просто изменив пропсы
@@ -41,7 +51,7 @@ export const Small: Story = {
     id: "1",
     status: "backlog",
     size: "small",
-    cardTitle: 'Тех встреча. Обсуждаем форму поиска',
+    cardTitle: "Тех встреча. Обсуждаем форму поиска",
     tag: {
       title: "Менторство",
       color: "#73AFBC",
@@ -81,7 +91,6 @@ export const StatusCanceled: Story = {
   },
 };
 
-
 export const WithoutTagAndDate: Story = {
   args: {
     ...Small.args,
@@ -91,17 +100,17 @@ export const WithoutTagAndDate: Story = {
     },
     startDateTime: "",
     endDateTime: "",
-  }
-}
+  },
+};
 
 export const WithoutTag: Story = {
   args: {
     ...Small.args,
     tag: {
       title: "",
-      color: '',
+      color: "",
     },
     startDateTime: "2025-03-07T19:30:00Z",
     endDateTime: "2025-03-07T20:30:00Z",
-  }
-}
+  },
+};

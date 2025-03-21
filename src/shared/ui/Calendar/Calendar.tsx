@@ -2,6 +2,12 @@ import { JSX } from 'react';
 import styles from './Calendar.module.css';
 import { EventCard } from '../EventCard/EventCard';
 
+type Task = {};
+
+type Calendar = {
+  tasks: Task[];
+}
+
 export const Calendar = (): JSX.Element => {
   const cellsTime = [...new Array(24)];
 
