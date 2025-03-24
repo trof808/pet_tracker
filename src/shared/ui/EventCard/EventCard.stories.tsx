@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { EventCard } from "./EventCard";
 
+import '../../../assets/fonts/font.css';
+
 const meta = {
   title: "shared/ui/EventCard",
   component: EventCard,

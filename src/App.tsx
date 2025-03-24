@@ -3,7 +3,7 @@ import { Calendar } from "./shared/ui/Calendar/Calendar";
 
 const App = () => {
   return (
-    <Calendar  />
+    <Calendar />
   );
 };
 

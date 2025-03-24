@@ -1,8 +1,4 @@
-/* Todo: решить проблему с наложением кнопок на карточку, чтобы сохранять дизайн и они отрабатывали. тк сейчас из-за z-index: -1 - не работает */
-
-
 .container {
-  /* padding: 10px; */
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -11,24 +7,7 @@
 
   position: relative;
   z-index: 0;
-
   width: 100%;
-}
-
-/* Размеры карточек */
-.small, .medium, .large {
-    min-height: 15px;
-    font-family: 'Inter';
-}
-
-.small {
-  font-size: 10px;
-}
-.medium {
-  font-size: 12px;
-}
-.large {
-  /* height: 90px; */
   font-size: 12px;
 }
 
@@ -69,22 +48,9 @@
   top: 0;
   border-radius: 0;
   z-index: -1;
-  /* opacity: .9; */
   pointer-events: all;
   mix-blend-mode: lighten;
 }
-
-/* .doneButton {
-  left: -20%;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
-}
-
-.deleteButton {
-  right: -20%;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-} */
 
 /* Заголовок карточки */
 .titleDecoration {
@@ -113,11 +79,11 @@
     margin-right: 5px;
 }
 
+/* Карточка */
 .taskItem {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: #EFEFEF;
   top: 0;
   left: 0;
   border-radius: 10px;

@@ -1,65 +1,170 @@
-import { JSX } from 'react';
+import { JSX, useState } from 'react';
 import styles from './Calendar.module.css';
 import { EventCard } from '../EventCard/EventCard';
+import { getCardHeight } from '../../utils/cardHeight';
 
-type Task = {};
+import {
+  EventCardStatus,
+  StartDateTime,
+  EndDateTime,
+  TagType,
+} from '../EventCard/EventCard';
 
-type Calendar = {
+type Task = {
+  id: string;
+  status: EventCardStatus;
+  cardTitle: string;
+  tag: TagType;
+  startDateTime: StartDateTime;
+  endDateTime: EndDateTime;
+};
+
+type CalendarData = {
   tasks: Task[];
-}
+};
+
+const initialTasks: CalendarData = {
+  tasks: [
+    {
+      id: '1',
+      status: EventCardStatus.Backlog,
+      cardTitle: 'Тех встреча. Обсуждение рефакторинга',
+      tag: { title: 'Работа', color: 'blue' },
+      startDateTime: '2025-03-17T04:00:00Z',
+      endDateTime: '2025-03-17T06:00:00Z',
+    },
+    {
+      id: '2',
+      status: EventCardStatus.Done,
+      cardTitle: 'Заплатить за аренду квартиры',
+      tag: { title: '', color: 'red' },
+      startDateTime: null,
+      endDateTime: null,
+    },
+    {
+      id: '3',
+      status: EventCardStatus.Backlog,
+      cardTitle: 'День рождения друга',
+      tag: { title: '', color: 'black' },
+      startDateTime: null,
+      endDateTime: null,
+    },
+    {
+      id: '4',
+      status: EventCardStatus.Backlog,
+      cardTitle: 'Обед с клиентом',
+      tag: { title: 'Работа', color: 'green' },
+      startDateTime: '2025-03-17T11:00:00Z',
+      endDateTime: '2025-03-17T12:00:00Z',
+    },
+    {
+      id: '5',
+      status: EventCardStatus.Backlog,
+      cardTitle: 'Прогулка с собакой',
+      tag: { title: 'Личное', color: 'orange' },
+      startDateTime: '2025-03-17T18:00:00Z',
+      endDateTime: '2025-03-17T19:00:00Z',
+    },
+  ],
+};
 
 export const Calendar = (): JSX.Element => {
-  const cellsTime = [...new Array(24)];
+  const [tasks, setTasks] = useState(initialTasks.tasks);
+
+  const hours = Array.from({ length: 24 }, (_, hour) => hour);
+  const allDayTasks = tasks.filter(
+    (task) => !task.startDateTime && !task.endDateTime
+  );
+
+  const handleTaskDone = (id: string): void => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === id
+          ? {
+              ...task,
+              status:
+                task.status === EventCardStatus.Done
+                  ? EventCardStatus.Backlog
+                  : EventCardStatus.Done,
+            }
+          : task
+      )
+    );
+  };
+
+  const handleTaskClick = (id: string): void => {
+    console.log(`Задача #${id} кликнута`);
+  };
+
+  const handleTaskDelete = (id: string): void => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === id
+          ? {
+              ...task,
+              status:
+                task.status === EventCardStatus.Canceled
+                  ? EventCardStatus.Backlog
+                  : EventCardStatus.Canceled,
+            }
+          : task
+      )
+    );
+  };
 
   return (
     <>
-      <div className={ styles.calendarContainer }>
-        <div className= { styles.allDaysTasks }>
-          <EventCard
-            id="2"
-            status="backlog"
-            size="small"
-            cardTitle='Заплатить за аренду квартиры'
-            tag={ { title: '', color: 'red' } }
-            startDateTime=""
-            endDateTime=""
-            onClick={ (id) => console.log('Клик по карточке:', id) }
-            onDelete={ (id) => console.log('Удаляем задачу:', id) }
-            onDone={ (id) => console.log('Завершаем задачу:', id) }
-          />
-          <EventCard
-            id="3"
-            status="backlog"
-            size="small"
-            cardTitle='День рождения друга'
-            tag={ { title: '', color: 'black' } }
-            startDateTime=""
-            endDateTime=""
-            onClick={ (id) => console.log('Клик по карточке:', id) }
-            onDelete={ (id) => console.log('Удаляем задачу:', id) }
-            onDone={ (id) => console.log('Завершаем задачу:', id) }
-          />
+      <div className={styles.calendarContainer}>
+        <div className={styles.allDaysTasks}>
+          {allDayTasks.map((task) => (
+            <EventCard
+              key={task.id}
+              id={task.id}
+              status={task.status}
+              cardTitle={task.cardTitle}
+              tag={task.tag}
+              startDateTime={task.startDateTime}
+              endDateTime={task.endDateTime}
+              height={getCardHeight(task.startDateTime, task.endDateTime)}
+              onClick={handleTaskClick}
+              onDone={handleTaskDone}
+              onDelete={handleTaskDelete}
+            />
+          ))}
         </div>
-        <div className={ styles.divider } />
-        {cellsTime.map((_, index) => (
-          <div className={ styles.timeSlot }  key={ index }>
-            <div className={ styles.timeLabel }>{index}:00</div>
-            <div className={ styles.eventContainer }>
-              <EventCard
-                id="1"
-                status="backlog"
-                size="medium"
-                cardTitle='Тех встреча. Обсуждение рефакторинга'
-                tag={ { title: 'Работа', color: 'blue' } }
-                startDateTime="2025-03-17T09:00:00Z"
-                endDateTime="2025-03-17T10:00:00Z"
-                onClick={ (id) => console.log('Клик по карточке:', id) }
-                onDelete={ (id) => console.log('Удаляем задачу:', id) }
-                onDone={ (id) => console.log('Завершаем задачу:', id) }
-              />
+        <div className={styles.divider} />
+        {hours.map((hour) => {
+          const slotTasks = tasks.filter((task) => {
+            if (!task.startDateTime) return false;
+            const eventHour = new Date(task.startDateTime).getHours();
+            return eventHour === hour;
+          });
+
+          return (
+            <div className={styles.timeSlot} key={hour}>
+              <div className={styles.timeLabel}>
+                {`${hour}`.padStart(2, '0')}:00
+              </div>
+              <div className={styles.eventContainer}>
+                {slotTasks.map((task) => (
+                  <EventCard
+                    key={task.id}
+                    id={task.id}
+                    status={task.status}
+                    cardTitle={task.cardTitle}
+                    tag={task.tag}
+                    startDateTime={task.startDateTime}
+                    endDateTime={task.endDateTime}
+                    height={getCardHeight(task.startDateTime, task.endDateTime)}
+                    onClick={handleTaskClick}
+                    onDone={handleTaskDone}
+                    onDelete={handleTaskDelete}
+                  />
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </>
   );
