@@ -2,13 +2,13 @@ import { JSX, useState } from 'react';
 import styles from './Calendar.module.css';
 import { EventCard } from '../EventCard/EventCard';
 import { getCardHeight } from '../../utils/cardHeight';
-
 import {
   EventCardStatus,
   StartDateTime,
   EndDateTime,
   TagType,
 } from '../EventCard/EventCard';
+import { TimeLine } from './components/TimeLine';
 
 type Task = {
   id: string;
@@ -113,8 +113,8 @@ export const Calendar = (): JSX.Element => {
   };
 
   return (
-    <>
-      <div className={styles.calendarContainer}>
+    <div className={styles.calendarContainer}>
+      <div className={styles.header}>
         <div className={styles.allDaysTasks}>
           {allDayTasks.map((task) => (
             <EventCard
@@ -133,39 +133,40 @@ export const Calendar = (): JSX.Element => {
           ))}
         </div>
         <div className={styles.divider} />
-        {hours.map((hour) => {
-          const slotTasks = tasks.filter((task) => {
-            if (!task.startDateTime) return false;
-            const eventHour = new Date(task.startDateTime).getHours();
-            return eventHour === hour;
-          });
-
-          return (
-            <div className={styles.timeSlot} key={hour}>
-              <div className={styles.timeLabel}>
-                {`${hour}`.padStart(2, '0')}:00
-              </div>
-              <div className={styles.eventContainer}>
-                {slotTasks.map((task) => (
-                  <EventCard
-                    key={task.id}
-                    id={task.id}
-                    status={task.status}
-                    cardTitle={task.cardTitle}
-                    tag={task.tag}
-                    startDateTime={task.startDateTime}
-                    endDateTime={task.endDateTime}
-                    height={getCardHeight(task.startDateTime, task.endDateTime)}
-                    onClick={handleTaskClick}
-                    onDone={handleTaskDone}
-                    onDelete={handleTaskDelete}
-                  />
-                ))}
-              </div>
-            </div>
-          );
-        })}
       </div>
-    </>
+      <TimeLine />
+      {hours.map((hour) => {
+        const slotTasks = tasks.filter((task) => {
+          if (!task.startDateTime) return false;
+          const eventHour = new Date(task.startDateTime).getHours();
+          return eventHour === hour;
+        });
+
+        return (
+          <div className={styles.timeSlot} key={hour}>
+            <div className={styles.timeLabel}>
+              {`${hour}`.padStart(2, '0')}:00
+            </div>
+            <div className={styles.eventContainer}>
+              {slotTasks.map((task) => (
+                <EventCard
+                  key={task.id}
+                  id={task.id}
+                  status={task.status}
+                  cardTitle={task.cardTitle}
+                  tag={task.tag}
+                  startDateTime={task.startDateTime}
+                  endDateTime={task.endDateTime}
+                  height={getCardHeight(task.startDateTime, task.endDateTime)}
+                  onClick={handleTaskClick}
+                  onDone={handleTaskDone}
+                  onDelete={handleTaskDelete}
+                />
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
   );
 };

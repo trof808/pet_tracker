@@ -26,8 +26,7 @@ export const EventVisible = ({
   handleTouchMove,
   handleTouchEnd,
 }: EventVisibleProps): JSX.Element => {
-  const statusTitle =
-    status !== EventCardStatus.Backlog ? styles.titleDecoration : '';
+  const statusTitle = status !== EventCardStatus.Backlog ? styles.titleDecoration : '';
 
   const hasDetails = tag.title?.trim() && startDateTime && endDateTime;
 
@@ -35,13 +34,15 @@ export const EventVisible = ({
 
   const paddingStyle = !hasDetails &&
   !hasTime && <EventTag tagColor={tag.color} />
-    ? { padding: '3px' }
-    : { padding: '10px' };
+    ? { padding: '3px 3px 3px 10px' }
+    : {};
+
+  const containerTopStyle = !hasDetails && !hasTime && <EventTag tagColor={tag.color} /> ? { top: '0'} : {};
 
   return (
     <div
       className={`${styles.container}`}
-      style={{ height }}
+      style={{ height, ...containerTopStyle }}
       // onClick={handleClick}
     >
       <EventBackground />
