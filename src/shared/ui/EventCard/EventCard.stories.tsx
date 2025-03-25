@@ -1,16 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
+import { EventCard, EventCardStatus } from "./EventCard";
 
-import { EventCard } from "./EventCard";
-
-import '../../../assets/fonts/font.css';
+import "../../../assets/fonts/font.css";
+import { getCardHeight } from "../../utils/cardHeight";
 
 const meta = {
-  title: "shared/ui/EventCard",
+  title: "Shared/UI/EventCard",
   component: EventCard,
   parameters: {
     layout: "centered",
     viewport: {
-      defaultViewport: "responsive", // Используйте 'responsive' для адаптивного дизайна
+      viewports: INITIAL_VIEWPORTS,
+      defaultViewport: "iphonex", // эмулируем iPhone X
     },
   },
   tags: ["autodocs"],
@@ -19,12 +21,11 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Отображение компонента
+// Базовая карточка (Backlog)
 export const Primary: Story = {
   args: {
     id: "1",
-    status: "backlog",
-    size: "medium",
+    status: EventCardStatus.Backlog,
     cardTitle: "Тех встреча. Обсуждаем форму поиска",
     tag: {
       title: "Работа",
@@ -32,9 +33,10 @@ export const Primary: Story = {
     },
     startDateTime: "2025-03-07T14:30:00Z",
     endDateTime: "2025-03-07T15:30:00Z",
-    onClick: () => null,
-    onDelete: () => null,
-    onDone: () => null,
+    height: getCardHeight("2025-03-07T14:30:00Z", "2025-03-07T15:30:00Z"),
+    onClick: (id: string) => console.log("Клик по карточке:", id),
+    onDone: (id: string) => console.log("Свайп вправо (выполнено):", id),
+    onDelete: (id: string) => console.log("Свайп влево (удалено):", id),
   },
   decorators: [
     (Story) => (
@@ -45,74 +47,127 @@ export const Primary: Story = {
   ],
 };
 
-// Ниже можно делать другие вариации компонента просто изменив пропсы
-// Смотри пример в компонент Button
-
 export const Small: Story = {
   args: {
-    id: "1",
-    status: "backlog",
-    size: "small",
-    cardTitle: "Тех встреча. Обсуждаем форму поиска",
+    id: "2",
+    status: EventCardStatus.Backlog,
+    cardTitle: "Менторство встреча",
     tag: {
       title: "Менторство",
       color: "#73AFBC",
     },
     startDateTime: "2025-03-07T11:30:00Z",
     endDateTime: "2025-03-07T12:30:00Z",
-    onClick: () => null,
-    onDelete: () => null,
-    onDone: () => null,
+    height: getCardHeight("2025-03-07T11:30:00Z", "2025-03-07T12:30:00Z"),
+    onClick: (id: string) => console.log("Клик по карточке:", id),
+    onDone: (id: string) => console.log("Свайп вправо (выполнено):", id),
+    onDelete: (id: string) => console.log("Свайп влево (удалено):", id),
   },
-};
-
-export const Large: Story = {
-  args: {
-    ...Small.args,
-    size: "large",
-  },
+  decorators: [
+    (Story) => (
+      <div style={{ width: "200px", margin: "0 auto" }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export const StatusDone: Story = {
   args: {
-    ...Primary.args,
-    status: "done",
+    id: "3",
+    status: EventCardStatus.Done,
+    cardTitle: "Задача выполнена",
     tag: {
-      title: "Менторство",
-      color: "#73AFBC",
+      title: "Работа",
+      color: "blue",
     },
     startDateTime: "2025-03-07T19:30:00Z",
     endDateTime: "2025-03-07T20:30:00Z",
+    height: getCardHeight("2025-03-07T19:30:00Z", "2025-03-07T20:30:00Z"),
+    onClick: (id: string) => console.log("Клик по карточке:", id),
+    onDone: (id: string) => console.log("Свайп вправо (выполнено):", id),
+    onDelete: (id: string) => console.log("Свайп влево (удалено):", id),
   },
+  decorators: [
+    (Story) => (
+      <div style={{ width: "200px", margin: "0 auto" }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export const StatusCanceled: Story = {
   args: {
-    ...StatusDone.args,
-    status: "canceled",
+    id: "4",
+    status: EventCardStatus.Canceled,
+    cardTitle: "Задача отменена",
+    tag: {
+      title: "Работа",
+      color: "gray",
+    },
+    startDateTime: "2025-03-07T19:30:00Z",
+    endDateTime: "2025-03-07T20:30:00Z",
+    height: getCardHeight("2025-03-07T19:30:00Z", "2025-03-07T20:30:00Z"),
+    onClick: (id: string) => console.log("Клик по карточке:", id),
+    onDone: (id: string) => console.log("Свайп вправо (выполнено):", id),
+    onDelete: (id: string) => console.log("Свайп влево (удалено):", id),
   },
+  decorators: [
+    (Story) => (
+      <div style={{ width: "200px", margin: "0 auto" }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export const WithoutTagAndDate: Story = {
   args: {
-    ...Small.args,
+    id: "5",
+    status: EventCardStatus.Backlog,
+    cardTitle: "Событие без тега и времени",
     tag: {
       title: "",
       color: "#73AFBC",
     },
     startDateTime: "",
     endDateTime: "",
+    height: "70px",
+    onClick: (id: string) => console.log("Клик по карточке:", id),
+    onDone: (id: string) => console.log("Свайп вправо (выполнено):", id),
+    onDelete: (id: string) => console.log("Свайп влево (удалено):", id),
   },
+  decorators: [
+    (Story) => (
+      <div style={{ width: "200px", margin: "0 auto" }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export const WithoutTag: Story = {
   args: {
-    ...Small.args,
+    id: "6",
+    status: EventCardStatus.Backlog,
+    cardTitle: "Событие без тега",
     tag: {
       title: "",
       color: "",
     },
     startDateTime: "2025-03-07T19:30:00Z",
     endDateTime: "2025-03-07T20:30:00Z",
+    height: getCardHeight("2025-03-07T19:30:00Z", "2025-03-07T20:30:00Z"),
+    onClick: (id: string) => console.log("Клик по карточке:", id),
+    onDone: (id: string) => console.log("Свайп вправо (выполнено):", id),
+    onDelete: (id: string) => console.log("Свайп влево (удалено):", id),
   },
+  decorators: [
+    (Story) => (
+      <div style={{ width: "200px", margin: "0 auto" }}>
+        <Story />
+      </div>
+    ),
+  ],
 };

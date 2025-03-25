@@ -1,7 +1,5 @@
-import { JSX, useState } from 'react';
+import { JSX } from 'react';
 import styles from './Calendar.module.css';
-import { EventCard } from '../EventCard/EventCard';
-import { getCardHeight } from '../../utils/cardHeight';
 import {
   EventCardStatus,
   StartDateTime,
@@ -9,8 +7,11 @@ import {
   TagType,
 } from '../EventCard/EventCard';
 import { TimeLine } from './components/TimeLine';
+import { CalendarHeader } from './components/CalendarHeader';
+import { CalendarHourSlot } from './components/CalendarHourSlot';
+import { useCalendarHandlers } from './hooks/useCalendarHandlers';
 
-type Task = {
+export type Task = {
   id: string;
   status: EventCardStatus;
   cardTitle: string;
@@ -69,71 +70,23 @@ const initialTasks: CalendarData = {
 };
 
 export const Calendar = (): JSX.Element => {
-  const [tasks, setTasks] = useState(initialTasks.tasks);
-
-  const hours = Array.from({ length: 24 }, (_, hour) => hour);
-  const allDayTasks = tasks.filter(
-    (task) => !task.startDateTime && !task.endDateTime
-  );
-
-  const handleTaskDone = (id: string): void => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
-        task.id === id
-          ? {
-              ...task,
-              status:
-                task.status === EventCardStatus.Done
-                  ? EventCardStatus.Backlog
-                  : EventCardStatus.Done,
-            }
-          : task
-      )
-    );
-  };
-
-  const handleTaskClick = (id: string): void => {
-    console.log(`Задача #${id} кликнута`);
-  };
-
-  const handleTaskDelete = (id: string): void => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
-        task.id === id
-          ? {
-              ...task,
-              status:
-                task.status === EventCardStatus.Canceled
-                  ? EventCardStatus.Backlog
-                  : EventCardStatus.Canceled,
-            }
-          : task
-      )
-    );
-  };
+  const {
+    tasks,
+    handleTaskClick,
+    handleTaskDelete,
+    handleTaskDone,
+    hours,
+    allDayTasks,
+  } = useCalendarHandlers(initialTasks.tasks);
 
   return (
     <div className={styles.calendarContainer}>
-      <div className={styles.header}>
-        <div className={styles.allDaysTasks}>
-          {allDayTasks.map((task) => (
-            <EventCard
-              key={task.id}
-              id={task.id}
-              status={task.status}
-              cardTitle={task.cardTitle}
-              tag={task.tag}
-              startDateTime={task.startDateTime}
-              endDateTime={task.endDateTime}
-              height={getCardHeight(task.startDateTime, task.endDateTime)}
-              onClick={handleTaskClick}
-              onDone={handleTaskDone}
-              onDelete={handleTaskDelete}
-            />
-          ))}
-        </div>
-        <div className={styles.divider} />
-      </div>
+      <CalendarHeader
+        allDayTasks={allDayTasks}
+        handleTaskClick={handleTaskClick}
+        handleTaskDelete={handleTaskDelete}
+        handleTaskDone={handleTaskDone}
+      />
       <TimeLine />
       {hours.map((hour) => {
         const slotTasks = tasks.filter((task) => {
@@ -143,28 +96,14 @@ export const Calendar = (): JSX.Element => {
         });
 
         return (
-          <div className={styles.timeSlot} key={hour}>
-            <div className={styles.timeLabel}>
-              {`${hour}`.padStart(2, '0')}:00
-            </div>
-            <div className={styles.eventContainer}>
-              {slotTasks.map((task) => (
-                <EventCard
-                  key={task.id}
-                  id={task.id}
-                  status={task.status}
-                  cardTitle={task.cardTitle}
-                  tag={task.tag}
-                  startDateTime={task.startDateTime}
-                  endDateTime={task.endDateTime}
-                  height={getCardHeight(task.startDateTime, task.endDateTime)}
-                  onClick={handleTaskClick}
-                  onDone={handleTaskDone}
-                  onDelete={handleTaskDelete}
-                />
-              ))}
-            </div>
-          </div>
+          <CalendarHourSlot
+            key={hour}
+            hour={hour}
+            tasks={slotTasks}
+            handleTaskClick={handleTaskClick}
+            handleTaskDelete={handleTaskDelete}
+            handleTaskDone={handleTaskDone}
+          />
         );
       })}
     </div>

@@ -16,7 +16,10 @@ export const TimeLine = (): JSX.Element => {
     const hours = now.getHours();
     const minutes = now.getMinutes();
 
-    const position = MIN_LINE_POSITION + (hours * MINUTES_IN_HOUR + minutes) * (HOUR_HEIGHT_PX / MINUTES_IN_HOUR);
+    const minutesSinceMidnight = hours * MINUTES_IN_HOUR + minutes;
+    const pixelPerMinute = HOUR_HEIGHT_PX / MINUTES_IN_HOUR;
+
+    const position = MIN_LINE_POSITION + minutesSinceMidnight * pixelPerMinute;
 
     setTopPosition(position);
   };
