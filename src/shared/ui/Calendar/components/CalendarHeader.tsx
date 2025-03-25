@@ -19,7 +19,7 @@ export const CalendarHeader = ({
 }: CalendarHeaderProps): JSX.Element => {
   return (
     <div className={styles.header}>
-      <div className={styles.allDaysTasks}>
+      <div className={styles.allDayTasks}>
         {allDayTasks.map((task) => (
           <EventCard
             key={task.id}

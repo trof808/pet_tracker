@@ -23,20 +23,6 @@
   background-color: #efefef;
 }
 
-/* Кнопки для карточек */
-.icon {
-  width: 20px;
-  height: 20px;
-}
-
-.checkIcon {
-  margin-right: 5px;
-}
-
-.binIcon {
-  margin-left: 5px;
-}
-
 /* Заголовок карточки */
 .titleDecoration {
   text-decoration: line-through;
