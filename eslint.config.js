@@ -47,8 +47,8 @@ export default tseslint.config(
       "react-hooks/exhaustive-deps": "warn",
 
       // JSX
-      "react/jsx-tag-spacing": ["error", { beforeSelfClosing: "always" }],
-      "react/jsx-curly-spacing": ["error", "always"],
+      // "react/jsx-tag-spacing": ["error", { beforeSelfClosing: "always" }],
+      // "react/jsx-curly-spacing": ["error", "always"],
       "react/no-children-prop": "error",
 
       "react-refresh/only-export-components": [

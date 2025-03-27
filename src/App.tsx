@@ -1,12 +1,10 @@
-import './App.css'
+import "./App.css";
+import { Calendar } from "./shared/ui/Calendar/Calendar";
 
-function App() {
-
+const App = () => {
   return (
-    <div>
-      Task Tracker
-    </div>
-  )
-}
+    <Calendar />
+  );
+};
 
-export default App
+export default App;
