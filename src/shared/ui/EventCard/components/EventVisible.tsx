@@ -46,6 +46,8 @@ export const EventVisible = ({
       // onClick={handleClick}
     >
       <EventBackground />
+      {/* <EventVisible /> */}
+      {/* По идее все что ниже и есть EventVisible */}
       <div
         className={`${styles.taskItem} ${styles[status]}`}
         ref={elementRef}
@@ -53,6 +55,7 @@ export const EventVisible = ({
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
+        // Чтобы работало на десктопе добавить ивенты с onMouse*
       >
         <div className={`${styles.title} ${statusTitle}`}>
           {!hasDetails && !hasTime && <EventTag tagColor={tag.color} />}
@@ -61,7 +64,9 @@ export const EventVisible = ({
         {hasDetails && (
           <div className={styles.details}>
             <EventTag tagColor={tag.color} />
+            {/* title по идее тоже должен входить в компонент EventTag */}
             <span className={styles.tagTitle}>{tag.title}</span>
+            {/* EventDateTime */}
             <span className={styles.time}>
               {formattedDate(startDateTime)} - {formattedDate(endDateTime)}
             </span>
@@ -69,6 +74,7 @@ export const EventVisible = ({
         )}
         {!hasDetails && hasTime && (
           <div className={styles.details}>
+            {/* EventDateTime */}
             <span className={styles.time}>
               {formattedDate(startDateTime)} - {formattedDate(endDateTime)}
             </span>

@@ -24,6 +24,7 @@ export const useHandleSwipe = (
     setTouchStartX(e.touches[0].clientX);
   };
 
+  // useCallback
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     if (touchStartX === 0) return;
 
@@ -43,6 +44,7 @@ export const useHandleSwipe = (
     setSwipeDistance(realDistance);
   };
 
+  // useCallback
   const handleTouchEnd = (): void => {
     if (elementRef.current) {
       elementRef.current.style.transform = 'translateX(0)';

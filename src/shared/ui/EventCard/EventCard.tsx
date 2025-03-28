@@ -48,12 +48,13 @@ export const EventCard = ({
 }: EventCardProps): JSX.Element => {
   const { elementRef, handleTouchStart, handleTouchMove, handleTouchEnd } = useHandleSwipe(
       id,
-      () => onDone(id),
-      () => onClick(id),
-      () => onDelete(id)
+      onDone,
+      onClick,
+      onDelete
     );
 
   return (
+    // Можно не оборачивать в шаблонный тег
     <>
       <EventVisible
         id={id}

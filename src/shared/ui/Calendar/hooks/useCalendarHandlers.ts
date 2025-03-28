@@ -11,16 +11,19 @@ type useCalendarHandlersReturn = {
   allDayTasks: Task[];
 };
 
+// Вот это можно вынести из хука
+const hours = Array.from({ length: 24 }, (_, hour) => hour);
+
 export const useCalendarHandlers = (
   initialState: Task[]
 ): useCalendarHandlersReturn => {
   const [tasks, setTasks] = useState(initialState);
 
-  const hours = Array.from({ length: 24 }, (_, hour) => hour);
   const allDayTasks = tasks.filter(
     (task) => !task.startDateTime && !task.endDateTime
   );
 
+  // Можно в useCallback
   const handleTaskDone = (id: string): void => {
     setTasks((prevTasks) =>
       prevTasks.map((task) =>
@@ -37,10 +40,12 @@ export const useCalendarHandlers = (
     );
   };
 
+  // Можно в useCallback
   const handleTaskClick = (id: string): void => {
     console.log(`Задача #${id} кликнута`);
   };
 
+  // Можно в useCallback
   const handleTaskDelete = (id: string): void => {
     setTasks((prevTasks) =>
       prevTasks.map((task) =>

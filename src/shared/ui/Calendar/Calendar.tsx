@@ -31,8 +31,10 @@ const initialTasks: CalendarData = {
       status: EventCardStatus.Backlog,
       cardTitle: 'Тех встреча. Обсуждение рефакторинга',
       tag: { title: 'Работа', color: 'blue' },
-      startDateTime: '2025-03-17T04:00:00Z',
-      endDateTime: '2025-03-17T06:00:00Z',
+      // startDateTime: '2025-03-17T04:00:00Z',
+      // endDateTime: '2025-03-17T06:00:00Z',
+      startDateTime: '2025-03-17T11:00:00Z',
+      endDateTime: '2025-03-17T12:00:00Z',
     },
     {
       id: '2',
@@ -56,7 +58,7 @@ const initialTasks: CalendarData = {
       cardTitle: 'Обед с клиентом',
       tag: { title: 'Работа', color: 'green' },
       startDateTime: '2025-03-17T11:00:00Z',
-      endDateTime: '2025-03-17T12:00:00Z',
+      endDateTime: '2025-03-17T12:20:00Z',
     },
     {
       id: '5',

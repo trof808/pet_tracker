@@ -1,12 +1,14 @@
 import { JSX, useEffect, useState } from "react";
 import styles from '../Calendar.module.css';
 
-export const TimeLine = (): JSX.Element => {
-  const MINUTES_IN_HOUR = 60;
-  const HOUR_HEIGHT_PX = 70;
+// Константы можно вынести выше компонента
+const MINUTES_IN_HOUR = 60;
+const HOUR_HEIGHT_PX = 70;
 
-  const ONE_MINUTE = 60000;
-  const MIN_LINE_POSITION = 92;
+const ONE_MINUTE = 60000;
+const MIN_LINE_POSITION = 92;
+
+export const TimeLine = (): JSX.Element => {
   const [topPosition, setTopPosition] = useState(0);
   
 
@@ -30,6 +32,7 @@ export const TimeLine = (): JSX.Element => {
       updateLinePosition();
     }, ONE_MINUTE)
 
+    // Очищаем чтобы не было утечек памяти
     return () => clearInterval(timerId)
   }, []);
 
