@@ -1,6 +1,9 @@
 import { JSX } from 'react';
 import { useHandleSwipe } from './hooks/useHandleSwipe';
 import { EventVisible } from './components/EventVisible';
+import { EventBackground } from './components/EventBackground';
+import styles from './EventCard.module.css';
+import { EventTag } from './components/EventTag';
 
 export enum EventCardStatus {
   Canceled = 'canceled',
@@ -30,7 +33,6 @@ export type EventCardProps = {
   onDone: (id: string) => void;
 };
 
-// TODO: Декомпозировать на более мелкие компоненты
 /**
  * Компонент для отображения события в календаре
  */
@@ -46,16 +48,25 @@ export const EventCard = ({
   onDone,
   onDelete,
 }: EventCardProps): JSX.Element => {
-  const { elementRef, handleTouchStart, handleTouchMove, handleTouchEnd } = useHandleSwipe(
-      id,
-      onDone,
-      onClick,
-      onDelete
-    );
+  const { elementRef, handleTouchStart, handleTouchMove, handleTouchEnd } =
+    useHandleSwipe(id, onDone, onClick, onDelete);
+
+  const hasDetails = tag.title?.trim() && startDateTime && endDateTime;
+
+  const hasTime = startDateTime && endDateTime;
+
+  const containerTopStyle = !hasDetails &&
+  !hasTime && <EventTag tagColor={tag.color} />
+    ? { top: '0' }
+    : {};
 
   return (
-    // Можно не оборачивать в шаблонный тег
-    <>
+    <div
+      className={`${styles.container}`}
+      style={{ height, ...containerTopStyle }}
+      // onClick={handleClick}
+    >
+      <EventBackground />
       <EventVisible
         id={id}
         status={status}
@@ -72,6 +83,6 @@ export const EventCard = ({
         handleTouchMove={handleTouchMove}
         handleTouchEnd={handleTouchEnd}
       />
-    </>
+    </div>
   );
 };

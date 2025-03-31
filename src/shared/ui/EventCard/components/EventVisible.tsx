@@ -2,8 +2,7 @@ import React, { JSX } from 'react';
 import styles from '../EventCard.module.css';
 import { EventCardProps, EventCardStatus } from '../EventCard';
 import { EventTag } from './EventTag';
-import { EventBackground } from './EventBackground';
-import { formattedDate } from '../../../utils/date';
+import { EventDateTime } from './EventDateTime';
 
 export type IDs = string;
 
@@ -20,13 +19,13 @@ export const EventVisible = ({
   tag,
   startDateTime,
   endDateTime,
-  height,
   elementRef,
   handleTouchStart,
   handleTouchMove,
   handleTouchEnd,
 }: EventVisibleProps): JSX.Element => {
-  const statusTitle = status !== EventCardStatus.Backlog ? styles.titleDecoration : '';
+  const statusTitle =
+    status !== EventCardStatus.Backlog ? styles.titleDecoration : '';
 
   const hasDetails = tag.title?.trim() && startDateTime && endDateTime;
 
@@ -37,50 +36,37 @@ export const EventVisible = ({
     ? { padding: '3px 3px 3px 10px' }
     : {};
 
-  const containerTopStyle = !hasDetails && !hasTime && <EventTag tagColor={tag.color} /> ? { top: '0'} : {};
-
   return (
     <div
-      className={`${styles.container}`}
-      style={{ height, ...containerTopStyle }}
-      // onClick={handleClick}
+      className={`${styles.taskItem} ${styles[status]}`}
+      ref={elementRef}
+      style={paddingStyle}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      // Чтобы работало на десктопе добавить ивенты с onMouse*
     >
-      <EventBackground />
-      {/* <EventVisible /> */}
-      {/* По идее все что ниже и есть EventVisible */}
-      <div
-        className={`${styles.taskItem} ${styles[status]}`}
-        ref={elementRef}
-        style={paddingStyle}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-        // Чтобы работало на десктопе добавить ивенты с onMouse*
-      >
-        <div className={`${styles.title} ${statusTitle}`}>
-          {!hasDetails && !hasTime && <EventTag tagColor={tag.color} />}
-          {cardTitle}
-        </div>
-        {hasDetails && (
-          <div className={styles.details}>
-            <EventTag tagColor={tag.color} />
-            {/* title по идее тоже должен входить в компонент EventTag */}
-            <span className={styles.tagTitle}>{tag.title}</span>
-            {/* EventDateTime */}
-            <span className={styles.time}>
-              {formattedDate(startDateTime)} - {formattedDate(endDateTime)}
-            </span>
-          </div>
-        )}
-        {!hasDetails && hasTime && (
-          <div className={styles.details}>
-            {/* EventDateTime */}
-            <span className={styles.time}>
-              {formattedDate(startDateTime)} - {formattedDate(endDateTime)}
-            </span>
-          </div>
-        )}
+      <div className={`${styles.title} ${statusTitle}`}>
+        {!hasDetails && !hasTime && <EventTag tagColor={tag.color} />}
+        {cardTitle}
       </div>
+      {hasDetails && (
+        <div className={styles.details}>
+          <EventTag tagColor={tag.color} tagTitle={tag.title} />
+          <EventDateTime
+            startDateTime={startDateTime}
+            endDateTime={endDateTime}
+          />
+        </div>
+      )}
+      {!hasDetails && hasTime && (
+        <div className={styles.details}>
+          <EventDateTime
+            startDateTime={startDateTime}
+            endDateTime={endDateTime}
+          />
+        </div>
+      )}
     </div>
   );
 };

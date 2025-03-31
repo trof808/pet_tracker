@@ -72,12 +72,13 @@ const initialTasks: CalendarData = {
 };
 
 export const Calendar = (): JSX.Element => {
+  const hours = Array.from({ length: 24 }, (_, hour) => hour);
+
   const {
     tasks,
     handleTaskClick,
     handleTaskDelete,
     handleTaskDone,
-    hours,
     allDayTasks,
   } = useCalendarHandlers(initialTasks.tasks);
 

@@ -9,10 +9,10 @@ const meta = {
   title: "Shared/UI/EventCard",
   component: EventCard,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
     viewport: {
       viewports: INITIAL_VIEWPORTS,
-      defaultViewport: "iphonex", // эмулируем iPhone X
+      defaultViewport: "iphonex",
     },
   },
   tags: ["autodocs"],
@@ -47,7 +47,7 @@ export const Primary: Story = {
   ],
 };
 
-export const Small: Story = {
+export const Big: Story = {
   args: {
     id: "2",
     status: EventCardStatus.Backlog,
@@ -57,8 +57,8 @@ export const Small: Story = {
       color: "#73AFBC",
     },
     startDateTime: "2025-03-07T11:30:00Z",
-    endDateTime: "2025-03-07T12:30:00Z",
-    height: getCardHeight("2025-03-07T11:30:00Z", "2025-03-07T12:30:00Z"),
+    endDateTime: "2025-03-07T13:30:00Z",
+    height: getCardHeight("2025-03-07T11:30:00Z", "2025-03-07T13:30:00Z"),
     onClick: (id: string) => console.log("Клик по карточке:", id),
     onDone: (id: string) => console.log("Свайп вправо (выполнено):", id),
     onDelete: (id: string) => console.log("Свайп влево (удалено):", id),
@@ -106,9 +106,9 @@ export const StatusCanceled: Story = {
       title: "Работа",
       color: "gray",
     },
-    startDateTime: "2025-03-07T19:30:00Z",
-    endDateTime: "2025-03-07T20:30:00Z",
-    height: getCardHeight("2025-03-07T19:30:00Z", "2025-03-07T20:30:00Z"),
+    startDateTime: "2025-03-07T17:30:00Z",
+    endDateTime: "2025-03-07T18:30:00Z",
+    height: getCardHeight("2025-03-07T17:30:00Z", "2025-03-07T18:30:00Z"),
     onClick: (id: string) => console.log("Клик по карточке:", id),
     onDone: (id: string) => console.log("Свайп вправо (выполнено):", id),
     onDelete: (id: string) => console.log("Свайп влево (удалено):", id),
@@ -131,16 +131,16 @@ export const WithoutTagAndDate: Story = {
       title: "",
       color: "#73AFBC",
     },
-    startDateTime: "",
-    endDateTime: "",
-    height: "70px",
+    startDateTime: null,
+    endDateTime: null,
+    height: "25px",
     onClick: (id: string) => console.log("Клик по карточке:", id),
     onDone: (id: string) => console.log("Свайп вправо (выполнено):", id),
     onDelete: (id: string) => console.log("Свайп влево (удалено):", id),
   },
   decorators: [
     (Story) => (
-      <div style={{ width: "200px", margin: "0 auto" }}>
+      <div style={{ width: "220px", margin: "0 auto" }}>
         <Story />
       </div>
     ),
