@@ -33,7 +33,7 @@ const initialTasks: CalendarData = {
       tag: { title: 'Работа', color: 'blue' },
       // startDateTime: '2025-03-17T04:00:00Z',
       // endDateTime: '2025-03-17T06:00:00Z',
-      startDateTime: '2025-03-17T11:00:00Z',
+      startDateTime: '2025-03-17T11:20:00Z',
       endDateTime: '2025-03-17T12:00:00Z',
     },
     {
@@ -71,8 +71,9 @@ const initialTasks: CalendarData = {
   ],
 };
 
-export const Calendar = (): JSX.Element => {
+export const Calendar = ({tasks: tasksProps}: CalendarData): JSX.Element => {
   const hours = Array.from({ length: 24 }, (_, hour) => hour);
+  const tasksData = tasksProps || initialTasks.tasks;
 
   const {
     tasks,
@@ -80,7 +81,7 @@ export const Calendar = (): JSX.Element => {
     handleTaskDelete,
     handleTaskDone,
     allDayTasks,
-  } = useCalendarHandlers(initialTasks.tasks);
+  } = useCalendarHandlers(tasksData);
 
   return (
     <div className={styles.calendarContainer}>
