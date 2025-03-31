@@ -67,3 +67,9 @@
   top: -3px;
   content: " ";
 }
+
+.eventContainer {
+  position: relative;
+  display: flex;
+  gap: 2px;
+}

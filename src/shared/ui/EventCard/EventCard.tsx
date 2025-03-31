@@ -31,6 +31,7 @@ export type EventCardProps = {
   onClick: (id: string) => void;
   onDelete: (id: string) => void;
   onDone: (id: string) => void;
+  compact: boolean;
 };
 
 /**
@@ -47,6 +48,7 @@ export const EventCard = ({
   onClick,
   onDone,
   onDelete,
+  compact,
 }: EventCardProps): JSX.Element => {
   const { elementRef, handleTouchStart, handleTouchMove, handleTouchEnd } =
     useHandleSwipe(id, onDone, onClick, onDelete);
@@ -62,7 +64,7 @@ export const EventCard = ({
 
   return (
     <div
-      className={`${styles.container}`}
+      className={`${styles.container} ${compact ? styles.compact : ''}`}
       style={{ height, ...containerTopStyle }}
       // onClick={handleClick}
     >
@@ -82,6 +84,7 @@ export const EventCard = ({
         handleTouchStart={handleTouchStart}
         handleTouchMove={handleTouchMove}
         handleTouchEnd={handleTouchEnd}
+        compact={compact}
       />
     </div>
   );
