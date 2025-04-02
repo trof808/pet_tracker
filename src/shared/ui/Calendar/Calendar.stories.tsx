@@ -54,7 +54,7 @@ export const Default: Story = {
         cardTitle: 'Задача B',
         tag: { title: 'Личное', color: 'orange' },
         startDateTime: '2025-03-17T13:10:00Z',
-        endDateTime: '2025-03-17T13:45:00Z',
+        endDateTime: '2025-03-17T13:55:00Z',
       },
       {
         id: '5',

@@ -1,0 +1,95 @@
+.container {
+  background-color: #f8f9fa;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+/* Основной блок с формой */
+.card {
+  background-color: white; 
+  color: black;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px 5px 0 0;
+  border: 1px solid #ced4da;
+  width: 100%;        
+  padding: 48px;
+  box-sizing: border-box;
+  max-width: 400px;
+}
+
+/* Контейнер для элементов формы (заголовок, поля ввода, кнопка) */
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Заголовок формы */
+.formTitle {
+  font-size: 24px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* Поля ввода */
+.formInput {
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+  background-color: #fff;
+  font-size: 13px;
+}
+
+.formInput::placeholder {
+  font-size: 15px;
+}
+
+/* Кнопка отправки формы */
+.formBtn {
+  background-color: #fff;
+  color: #0d6efd;
+  border: 1px solid #0d6efd;
+  border-radius: 5px;
+  padding: 6px 12px;
+}
+
+.formBtn:hover {
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+/* Нижняя часть (футер) */
+.cardFooter {
+  padding: 24px;
+  width: 100%;
+  background-color: #e9ecef;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ced4da;
+  max-width: 400px;
+}
+
+/* Внутренние элементы футера */
+.cardFooterDetails {
+  display: flex;
+  gap: 10px;
+  font-size: 14px;
+  color: black;
+}
+
+/* Ссылка в футере */
+.cardFooterDetails a {
+  text-decoration: underline;
+  color: #0d6efd;
+}
