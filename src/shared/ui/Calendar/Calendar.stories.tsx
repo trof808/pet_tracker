@@ -45,7 +45,7 @@ export const Default: Story = {
         status: EventCardStatus.Backlog,
         cardTitle: 'Задача A',
         tag: { title: 'Работа', color: 'blue' },
-        startDateTime: '2025-03-17T09:00:00Z',
+        startDateTime: '2025-03-17T09:15:00Z',
         endDateTime: '2025-03-17T10:00:00Z',
       },
       {
@@ -53,7 +53,7 @@ export const Default: Story = {
         status: EventCardStatus.Done,
         cardTitle: 'Задача B',
         tag: { title: 'Личное', color: 'orange' },
-        startDateTime: '2025-03-17T13:00:00Z',
+        startDateTime: '2025-03-17T13:10:00Z',
         endDateTime: '2025-03-17T13:45:00Z',
       },
       {

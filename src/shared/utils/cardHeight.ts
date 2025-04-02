@@ -7,6 +7,7 @@
 // Пример чистой функции
 
 export const EVENT_CARD_SMALL = 25;
+export const  PIXELS_PER_HOUR = 70;
 
 export const getCardHeight = (start: string | null, end: string | null): string => {
   if (!start || !end) {
@@ -27,7 +28,6 @@ export const getCardHeight = (start: string | null, end: string | null): string 
 
   const diffHours = endInHours - startInHours;
 
-  const PIXELS_PER_HOUR = 70;
   const height = diffHours * PIXELS_PER_HOUR;
 
   return `${height}px`;
