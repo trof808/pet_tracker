@@ -22,16 +22,15 @@ export const CalendarEvents = ({
   const filteredTasks = tasks.filter(task => task.startDateTime !== null);
   return (
     <div className={styles.eventContainer}>
-      {tasks.filter(task => task.startDateTime !== null).map((task) => {
+      {filteredTasks.map((task) => {
         const { width, left } = getCardWidthAndLeftOffset(task, tasks);
         return (
           <div
             key={task.id}
-            // className={styles.eventPos} я бы класс создал, чтобы не использовать инлайн стили. что можно достать - достал бы.
+            className={styles.eventPosition}
             style={{
               width: width,
               top: getEventTopOffset(task.startDateTime),
-              position: 'absolute',
               left: left,
             }}
           >
