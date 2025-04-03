@@ -78,3 +78,31 @@
 .eventPosition {
   position: absolute;
 }
+
+/* Стили для CalendarToolBar */
+.toolBar {
+  background-color: #FBFBFB;
+  padding: 0 20px 20px 20px;
+}
+
+.toolBarDetails {
+  color: black;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 7px;
+}
+
+.today, .monthSelect {
+  font-size: 12px;
+  padding: 5px 10px;
+  background-color: #F0F0F0;
+  border-radius: 5px;
+}
+
+.monthSelect {
+  color: black;
+  cursor: pointer;
+  border: none;
+  text-transform: capitalize;
+}

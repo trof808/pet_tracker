@@ -11,6 +11,7 @@ import { CalendarHeader } from './components/CalendarHeader';
 import { CalendarHourSlot } from './components/CalendarHourSlot';
 import { useCalendarHandlers } from './hooks/useCalendarHandlers';
 import { CalendarEvents } from './components/CalendarEvents';
+import { CalendarToolBar } from './components/CalendarToolBar';
 
 export type Task = {
   id: string;
@@ -101,26 +102,26 @@ export const Calendar = ({ tasks: tasksProps }: CalendarData): JSX.Element => {
   } = useCalendarHandlers(tasksData);
 
   return (
-    <div className={styles.calendarContainer}>
-      <CalendarHeader
-        allDayTasks={allDayTasks}
-        handleTaskClick={handleTaskClick}
-        handleTaskDelete={handleTaskDelete}
-        handleTaskDone={handleTaskDone}
-      />
-      <TimeLine />
+    <>
+      <CalendarToolBar />
+      <div className={styles.calendarContainer}>
+        <CalendarHeader
+          allDayTasks={allDayTasks}
+          handleTaskClick={handleTaskClick}
+          handleTaskDelete={handleTaskDelete}
+          handleTaskDone={handleTaskDone}
+        />
+        <TimeLine />
         {hours.map((hour) => (
-          <CalendarHourSlot
-            key={hour}
-            hour={hour}
-          />
+          <CalendarHourSlot key={hour} hour={hour} />
         ))}
-      <CalendarEvents
-        tasks={tasks}
-        handleTaskClick={handleTaskClick}
-        handleTaskDelete={handleTaskDelete}
-        handleTaskDone={handleTaskDone}
-      />
-    </div>
+        <CalendarEvents
+          tasks={tasks}
+          handleTaskClick={handleTaskClick}
+          handleTaskDelete={handleTaskDelete}
+          handleTaskDone={handleTaskDone}
+        />
+      </div>
+    </>
   );
 };
