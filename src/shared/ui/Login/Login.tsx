@@ -1,5 +1,6 @@
 import { JSX } from 'react';
 import styles from './AuthForm.module.css';
+import { Link } from '@tanstack/react-router';
 
 export const Login = (): JSX.Element => {
   return (
@@ -27,9 +28,7 @@ export const Login = (): JSX.Element => {
       <div className={styles.cardFooter}>
         <div className={styles.cardFooterDetails}>
           <span>Нет аккаунта?</span>
-          <a href="тут роутинг на регистрацию сделаю через TanstackRouter">
-            Регистрация
-          </a>
+          <Link to="/registration">Регистрация</Link>
         </div>
       </div>
     </div>
