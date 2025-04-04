@@ -1,5 +1,6 @@
 import { JSX, useState } from 'react';
 import styles from '../Calendar.module.css';
+import { MonthDropDown } from './CalendarMonthDropDown/MonthDropDown';
 
 export const CalendarToolBar = (): JSX.Element => {
   const getMonthsNames = () => {
@@ -14,19 +15,15 @@ export const CalendarToolBar = (): JSX.Element => {
 
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
 
-  const handleMonthChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedMonth(event.target.value)
-  }
   return (
     <div className={styles.toolBar}>
       <div className={styles.toolBarDetails}>
-        {/* Надо будет кастомный выпадающий список сделать, а то это ужас какой-то */}
-          <select value={selectedMonth} onChange={handleMonthChange} className={styles.monthSelect}>
-            {monthsNames.map((month) => (
-              <option value={month} key={month}>{month}</option>
-            ))}
-          </select>
-          <span className={styles.today}>Сегодня</span>
+        <MonthDropDown
+          months={monthsNames}
+          selectedMonth={selectedMonth}
+          onChange={(month) => setSelectedMonth(month)}
+        />
+        <span className={styles.today}>Сегодня</span>
       </div>
     </div>
   );
