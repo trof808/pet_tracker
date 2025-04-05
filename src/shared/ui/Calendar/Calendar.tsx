@@ -12,6 +12,7 @@ import { CalendarHourSlot } from './components/CalendarHourSlot';
 import { useCalendarHandlers } from './hooks/useCalendarHandlers';
 import { CalendarEvents } from './components/CalendarEvents';
 import { CalendarToolBar } from './components/CalendarToolBar';
+import { CalendarDateSlider } from './components/CalendarDateSlider/CalendarDateSlider';
 
 export type Task = {
   id: string;
@@ -104,6 +105,7 @@ export const Calendar = ({ tasks: tasksProps }: CalendarData): JSX.Element => {
   return (
     <>
       <CalendarToolBar />
+      <CalendarDateSlider />
       <div className={styles.calendarContainer}>
         <CalendarHeader
           allDayTasks={allDayTasks}

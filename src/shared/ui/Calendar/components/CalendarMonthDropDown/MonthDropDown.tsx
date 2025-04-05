@@ -31,7 +31,11 @@ export const MonthDropDown = ({
       {isOpen && (
         <div className={styles.dropdownMenu}>
           {months.map((month) => (
-            <div className={styles.dropdownItem} key={month} onClick={() => handleSelect(month)}>
+            <div
+              className={styles.dropdownItem}
+              key={month}
+              onClick={() => handleSelect(month)}
+            >
               {month}
             </div>
           ))}

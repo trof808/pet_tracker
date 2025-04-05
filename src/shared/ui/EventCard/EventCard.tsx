@@ -31,7 +31,7 @@ export type EventCardProps = {
   onClick: (id: string) => void;
   onDelete: (id: string) => void;
   onDone: (id: string) => void;
-  compact: boolean;
+  compact?: boolean;
 };
 
 /**
