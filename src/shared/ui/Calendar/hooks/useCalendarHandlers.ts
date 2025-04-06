@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Task } from '../Calendar';
 import { EventCardStatus } from '../../EventCard/EventCard';
 
@@ -7,12 +7,8 @@ type useCalendarHandlersReturn = {
   handleTaskClick: (id: string) => void;
   handleTaskDelete: (id: string) => void;
   handleTaskDone: (id: string) => void;
-  hours: number[];
   allDayTasks: Task[];
 };
-
-// Вот это можно вынести из хука
-const hours = Array.from({ length: 24 }, (_, hour) => hour);
 
 export const useCalendarHandlers = (
   initialState: Task[]
@@ -24,7 +20,7 @@ export const useCalendarHandlers = (
   );
 
   // Можно в useCallback
-  const handleTaskDone = (id: string): void => {
+  const handleTaskDone = useCallback((id: string): void => {
     setTasks((prevTasks) =>
       prevTasks.map((task) =>
         task.id === id
@@ -38,15 +34,15 @@ export const useCalendarHandlers = (
           : task
       )
     );
-  };
+  }, []);
 
   // Можно в useCallback
-  const handleTaskClick = (id: string): void => {
+  const handleTaskClick = useCallback((id: string): void => {
     console.log(`Задача #${id} кликнута`);
-  };
+  }, []);
 
   // Можно в useCallback
-  const handleTaskDelete = (id: string): void => {
+  const handleTaskDelete = useCallback((id: string): void => {
     setTasks((prevTasks) =>
       prevTasks.map((task) =>
         task.id === id
@@ -60,14 +56,13 @@ export const useCalendarHandlers = (
           : task
       )
     );
-  };
+  }, []);
 
   return {
     tasks,
     handleTaskClick,
     handleTaskDelete,
     handleTaskDone,
-    hours,
     allDayTasks,
   };
 };

@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FBFBFB;
+  padding: 15px 20px;
+}
+
+.userDetails {
+  color: black;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar {
+  width: 45px;
+  height: 45px;
+  background-color: #D9D9D9;
+  border-radius: 50%;
+}
+
+.userName {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.notificationBtn, .themeSwitch {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.notificationBtn img, .themeSwitch img {
+  width: 19px;
+  height: 21px;
+}
+

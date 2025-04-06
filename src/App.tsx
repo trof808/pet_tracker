@@ -1,9 +1,14 @@
+import { createRouter, RouterProvider } from "@tanstack/react-router";
 import "./App.css";
-import { Calendar } from "./shared/ui/Calendar/Calendar";
+import { routeTree } from "./pages/Routes";
+import { JSX } from "react/jsx-runtime";
 
-const App = () => {
+
+const router = createRouter({ routeTree });
+
+const App = (): JSX.Element => {
   return (
-    <Calendar />
+    <RouterProvider router={router} />
   );
 };
 

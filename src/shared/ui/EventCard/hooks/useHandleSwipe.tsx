@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { IDs } from '../components/EventVisible';
 
 type useHandleSwipeReturn = {
@@ -25,7 +25,7 @@ export const useHandleSwipe = (
   };
 
   // useCallback
-  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+  const handleTouchMove = useCallback((e: React.TouchEvent<HTMLDivElement>) => {
     if (touchStartX === 0) return;
 
     const touchMoveX = e.touches[0].clientX;
@@ -42,10 +42,10 @@ export const useHandleSwipe = (
     }
 
     setSwipeDistance(realDistance);
-  };
+  }, [touchStartX]);
 
   // useCallback
-  const handleTouchEnd = (): void => {
+  const handleTouchEnd = useCallback((): void => {
     if (elementRef.current) {
       elementRef.current.style.transform = 'translateX(0)';
       elementRef.current.style.transition = 'transform 0.3s ease'; // Плавное возвращение
@@ -61,7 +61,7 @@ export const useHandleSwipe = (
 
     setSwipeDistance(0);
     setTouchStartX(0);
-  };
+  }, [id, onClick, onDelete, onDone, swipeDistance]);
 
   return {
     elementRef,

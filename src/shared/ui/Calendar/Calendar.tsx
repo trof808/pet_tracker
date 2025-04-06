@@ -10,6 +10,9 @@ import { TimeLine } from './components/TimeLine';
 import { CalendarHeader } from './components/CalendarHeader';
 import { CalendarHourSlot } from './components/CalendarHourSlot';
 import { useCalendarHandlers } from './hooks/useCalendarHandlers';
+import { CalendarEvents } from './components/CalendarEvents';
+import { CalendarToolBar } from './components/CalendarToolBar';
+import { CalendarDateSlider } from './components/CalendarDateSlider/CalendarDateSlider';
 
 export type Task = {
   id: string;
@@ -27,16 +30,6 @@ type CalendarData = {
 const initialTasks: CalendarData = {
   tasks: [
     {
-      id: '1',
-      status: EventCardStatus.Backlog,
-      cardTitle: 'Тех встреча. Обсуждение рефакторинга',
-      tag: { title: 'Работа', color: 'blue' },
-      // startDateTime: '2025-03-17T04:00:00Z',
-      // endDateTime: '2025-03-17T06:00:00Z',
-      startDateTime: '2025-03-17T11:00:00Z',
-      endDateTime: '2025-03-17T12:00:00Z',
-    },
-    {
       id: '2',
       status: EventCardStatus.Done,
       cardTitle: 'Заплатить за аренду квартиры',
@@ -51,6 +44,24 @@ const initialTasks: CalendarData = {
       tag: { title: '', color: 'black' },
       startDateTime: null,
       endDateTime: null,
+    },
+    {
+      id: '7',
+      status: EventCardStatus.Backlog,
+      cardTitle: 'Обед с клиентом',
+      tag: { title: 'Работа', color: 'green' },
+      startDateTime: '2025-03-17T21:10:00Z',
+      endDateTime: '2025-03-17T23:40:00Z',
+    },
+    {
+      id: '1',
+      status: EventCardStatus.Backlog,
+      cardTitle: 'Тех встреча. Обсуждение рефакторинга',
+      tag: { title: 'Работа', color: 'blue' },
+      // startDateTime: '2025-03-17T04:00:00Z',
+      // endDateTime: '2025-03-17T06:00:00Z',
+      startDateTime: '2025-03-17T11:20:00Z',
+      endDateTime: '2025-03-17T12:30:00Z',
     },
     {
       id: '4',
@@ -68,46 +79,51 @@ const initialTasks: CalendarData = {
       startDateTime: '2025-03-17T18:00:00Z',
       endDateTime: '2025-03-17T19:00:00Z',
     },
+    {
+      id: '6',
+      status: EventCardStatus.Backlog,
+      cardTitle: 'Тех встреча. Обсуждение рефакторинга',
+      tag: { title: 'Работа', color: 'blue' },
+      startDateTime: '2025-03-17T04:30:00Z',
+      endDateTime: '2025-03-17T06:20:00Z',
+    },
   ],
 };
 
-export const Calendar = (): JSX.Element => {
+export const Calendar = ({ tasks: tasksProps }: CalendarData): JSX.Element => {
+  const hours = Array.from({ length: 24 }, (_, hour) => hour);
+  const tasksData = tasksProps || initialTasks.tasks;
+
   const {
     tasks,
     handleTaskClick,
     handleTaskDelete,
     handleTaskDone,
-    hours,
     allDayTasks,
-  } = useCalendarHandlers(initialTasks.tasks);
+  } = useCalendarHandlers(tasksData);
 
   return (
-    <div className={styles.calendarContainer}>
-      <CalendarHeader
-        allDayTasks={allDayTasks}
-        handleTaskClick={handleTaskClick}
-        handleTaskDelete={handleTaskDelete}
-        handleTaskDone={handleTaskDone}
-      />
-      <TimeLine />
-      {hours.map((hour) => {
-        const slotTasks = tasks.filter((task) => {
-          if (!task.startDateTime) return false;
-          const eventHour = new Date(task.startDateTime).getHours();
-          return eventHour === hour;
-        });
-
-        return (
-          <CalendarHourSlot
-            key={hour}
-            hour={hour}
-            tasks={slotTasks}
-            handleTaskClick={handleTaskClick}
-            handleTaskDelete={handleTaskDelete}
-            handleTaskDone={handleTaskDone}
-          />
-        );
-      })}
-    </div>
+    <>
+      <CalendarToolBar />
+      <CalendarDateSlider />
+      <div className={styles.calendarContainer}>
+        <CalendarHeader
+          allDayTasks={allDayTasks}
+          handleTaskClick={handleTaskClick}
+          handleTaskDelete={handleTaskDelete}
+          handleTaskDone={handleTaskDone}
+        />
+        <TimeLine />
+        {hours.map((hour) => (
+          <CalendarHourSlot key={hour} hour={hour} />
+        ))}
+        <CalendarEvents
+          tasks={tasks}
+          handleTaskClick={handleTaskClick}
+          handleTaskDelete={handleTaskDelete}
+          handleTaskDone={handleTaskDone}
+        />
+      </div>
+    </>
   );
 };
