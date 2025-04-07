@@ -1,10 +1,10 @@
 import { JSX } from 'react';
-import { Task } from '../Calendar';
+import { Task } from '../CalendarFeature';
 import styles from '../Calendar.module.css';
 import { EventCard } from '../../EventCard/EventCard';
-import { getCardHeight } from '../../../shared/utils/cardHeight';
-import { getEventTopOffset } from '../../../shared/utils/EventTopOffset';
-import { getCardWidthAndLeftOffset } from '../../../shared/utils/cardWithAndLeftOffset';
+import { getCardHeight } from '../../../utils/cardHeight';
+import { getEventTopOffset } from '../../../utils/EventTopOffset';
+import { getCardWidthAndLeftOffset } from '../../../utils/cardWithAndLeftOffset';
 
 export type CalendarEventsProps = {
   tasks: Task[];

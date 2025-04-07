@@ -1,18 +1,5 @@
-import { JSX } from 'react';
-import styles from './Calendar.module.css';
-import {
-  EventCardStatus,
-  StartDateTime,
-  EndDateTime,
-  TagType,
-} from '../EventCard/EventCard';
-import { TimeLine } from './components/TimeLine';
-import { CalendarHeader } from './components/CalendarHeader';
-import { CalendarHourSlot } from './components/CalendarHourSlot';
-import { useCalendarHandlers } from './hooks/useCalendarHandlers';
-import { CalendarEvents } from './components/CalendarEvents';
-import { CalendarToolBar } from './components/CalendarToolBar';
-import { CalendarDateSlider } from './components/CalendarDateSlider/CalendarDateSlider';
+import { useCallback, useState } from 'react';
+import { EndDateTime, EventCardStatus, StartDateTime, TagType } from '../../EventCard/EventCard';
 
 export type Task = {
   id: string;
@@ -90,40 +77,65 @@ const initialTasks: CalendarData = {
   ],
 };
 
-export const Calendar = ({ tasks: tasksProps }: CalendarData): JSX.Element => {
-  const hours = Array.from({ length: 24 }, (_, hour) => hour);
-  const tasksData = tasksProps || initialTasks.tasks;
+type useCalendarHandlersReturn = {
+  tasks: Task[];
+  handleTaskClick: (id: string) => void;
+  handleTaskDelete: (id: string) => void;
+  handleTaskDone: (id: string) => void;
+  allDayTasks: Task[];
+};
 
-  const {
+export const useCalendarHandlers = (): useCalendarHandlersReturn => {
+  const [tasks, setTasks] = useState(initialTasks.tasks);
+
+  const allDayTasks = tasks.filter(
+    (task) => !task.startDateTime && !task.endDateTime
+  );
+
+  // Можно в useCallback
+  const handleTaskDone = useCallback((id: string): void => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === id
+          ? {
+              ...task,
+              status:
+                task.status === EventCardStatus.Done
+                  ? EventCardStatus.Backlog
+                  : EventCardStatus.Done,
+            }
+          : task
+      )
+    );
+  }, []);
+
+  // Можно в useCallback
+  const handleTaskClick = useCallback((id: string): void => {
+    console.log(`Задача #${id} кликнута`);
+  }, []);
+
+  // Можно в useCallback
+  const handleTaskDelete = useCallback((id: string): void => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === id
+          ? {
+              ...task,
+              status:
+                task.status === EventCardStatus.Canceled
+                  ? EventCardStatus.Backlog
+                  : EventCardStatus.Canceled,
+            }
+          : task
+      )
+    );
+  }, []);
+
+  return {
     tasks,
     handleTaskClick,
     handleTaskDelete,
     handleTaskDone,
     allDayTasks,
-  } = useCalendarHandlers(tasksData);
-
-  return (
-    <>
-      <CalendarToolBar />
-      <CalendarDateSlider />
-      <div className={styles.calendarContainer}>
-        <CalendarHeader
-          allDayTasks={allDayTasks}
-          handleTaskClick={handleTaskClick}
-          handleTaskDelete={handleTaskDelete}
-          handleTaskDone={handleTaskDone}
-        />
-        <TimeLine />
-        {hours.map((hour) => (
-          <CalendarHourSlot key={hour} hour={hour} />
-        ))}
-        <CalendarEvents
-          tasks={tasks}
-          handleTaskClick={handleTaskClick}
-          handleTaskDelete={handleTaskDelete}
-          handleTaskDone={handleTaskDone}
-        />
-      </div>
-    </>
-  );
+  };
 };

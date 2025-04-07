@@ -1,4 +1,4 @@
-import { Task } from '../ui/Calendar/Calendar';
+import { Task } from '../../features/Calendar/CalendarFeature';
 
 const WIDTH_PERCENT = 100;
 

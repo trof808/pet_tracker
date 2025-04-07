@@ -2,13 +2,19 @@ import { JSX, useState } from 'react';
 import styles from './MonthDropDown.module.css';
 
 type MonthDropDownProps = {
-  months: string[];
   selectedMonth: string;
   onChange: (month: string) => void;
 };
 
+const getMonthsNames = () => {
+  return Array.from({ length: 12 }, (_, i) =>
+    new Date(2025, i, 1).toLocaleString('default', { month: 'long' })
+  );
+};
+
+const monthsNames = getMonthsNames();
+
 export const MonthDropDown = ({
-  months,
   selectedMonth,
   onChange,
 }: MonthDropDownProps): JSX.Element => {
@@ -23,6 +29,8 @@ export const MonthDropDown = ({
     setIsOpen(false);
   };
   return (
+    // Сделать базовый компонент <Select />
+    // Сделать его на основе тегов select и option
     <div className={styles.dropdownContainer}>
       <button className={styles.dropdownBtn} onClick={handleToogle}>
         {selectedMonth}
@@ -30,7 +38,7 @@ export const MonthDropDown = ({
       </button>
       {isOpen && (
         <div className={styles.dropdownMenu}>
-          {months.map((month) => (
+          {monthsNames.map((month) => (
             <div
               className={styles.dropdownItem}
               key={month}

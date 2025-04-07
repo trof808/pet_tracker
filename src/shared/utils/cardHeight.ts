@@ -9,6 +9,7 @@
 export const EVENT_CARD_SMALL = 25;
 export const  PIXELS_PER_HOUR = 70;
 
+// Эта функция является частью компонента EventCard. Врядли будет использоваться где-то еще
 export const getCardHeight = (start: string | null, end: string | null): string => {
   if (!start || !end) {
     return `${EVENT_CARD_SMALL}px`;

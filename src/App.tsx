@@ -1,6 +1,6 @@
 import { createRouter, RouterProvider } from "@tanstack/react-router";
 import "./App.css";
-import { routeTree } from "./pages/Routes";
+import { routeTree } from "./routes/Routes";
 import { JSX } from "react/jsx-runtime";
 
 
