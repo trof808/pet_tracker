@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { EndDateTime, EventCardStatus, StartDateTime, TagType } from '../../EventCard/EventCard';
+import { EndDateTime, EventCardStatus, StartDateTime, TagType } from '../../../../entities/events/ui/EventCard/EventCard';
 
 export type Task = {
   id: string;

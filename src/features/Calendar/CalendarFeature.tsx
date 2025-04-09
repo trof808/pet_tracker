@@ -1,12 +1,12 @@
 import { JSX } from "react";
 import styles from "./Calendar.module.css";
-import { TimeLine } from "./components/TimeLine";
-import { CalendarHeader } from "./components/CalendarHeader";
-import { CalendarHourSlot } from "./components/CalendarHourSlot";
-import { useCalendarHandlers } from "./hooks/useCalendarHandlers";
-import { CalendarEvents } from "./components/CalendarEvents";
-import { CalendarToolBar } from "./components/CalendarToolBar";
-import { CalendarDateSlider } from "./components/CalendarDateSlider/CalendarDateSlider";
+import { TimeLine } from "./ui/TimeLine";
+import { CalendarHeader } from "./ui/CalendarHeader";
+import { CalendarHourSlot } from "./ui/CalendarHourSlot";
+import { useCalendarHandlers } from "./lib/hooks/useCalendarHandlers";
+import { CalendarEvents } from "./ui/CalendarEvents";
+// import { CalendarToolBar } from "../../widgets/CalendarToolBar/CalendarToolBar"
+// import { CalendarDateSlider } from "./ui/CalendarDateSlider/CalendarDateSlider";
 
 // Это фича календаря. Самостоятельная сущность, которую если вызвать, то она все сделает сама
 // и данные получит и список задач отрендерит

@@ -1,4 +1,3 @@
-// CalendarDateSlider.tsx
 import { JSX, useState } from 'react';
 import styles from './CalendarDateSlider.module.css';
 

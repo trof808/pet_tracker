@@ -3,7 +3,7 @@ import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { Calendar } from "./CalendarFeature";
 
 import "../../../assets/fonts/font.css";
-import { EventCardStatus } from "../EventCard/EventCard";
+import { EventCardStatus } from "../../entities/events/ui/EventCard/EventCard";
 
 const meta = {
   title: "Shared/UI/Calendar",

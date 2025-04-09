@@ -3,9 +3,9 @@
 import { JSX } from 'react';
 import styles from './AppHeader.module.css';
 
-import notifyIcon from './images/notifyIcon.png';
-import sonicAvatar from './images/sonicAvatar.jpg';
-import themeSwitch from './images/themeSwitch.png';
+import notifyIcon from './assets/images/notifyIcon.png'
+import sonicAvatar from './assets/images/sonicAvatar.jpg';
+import themeSwitch from './assets/images/themeSwitch.png';
 
 export const AppHeader = (): JSX.Element => {
   return (

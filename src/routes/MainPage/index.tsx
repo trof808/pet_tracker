@@ -3,15 +3,15 @@ import { Calendar } from "../../features/Calendar/CalendarFeature";
 import { AppHeader } from "../../shared/ui/AppHeader/AppHeader";
 import { createRoute } from "@tanstack/react-router";
 import { rootRoute } from "../__root";
-import { CalendarToolBar } from "../../widgets/CalendarToolBar/CalendarToolBar";
-import { CalendarDateSlider } from "../../features/Calendar/ui/CalendarDateSlider/CalendarDateSlider";
+import { ActionsToolbar } from "../../widgets/ActionsToolbar/ActionsToolbar";
+import { CalendarDateSlider } from "../../features/MonthDays/CalendarDateSliderFeature";
 
 const MainPage = (): JSX.Element => {
   return (
     <>
       <AppHeader />
       {/* widget/calendarToolbar */}
-      <CalendarToolBar />
+      <ActionsToolbar />
       {/* feature/calendarDates */}
       <CalendarDateSlider />
       {/* feataure/calendar */}
