@@ -1,5 +1,5 @@
 import { JSX } from "react";
-import { Login } from "../../shared/ui/Login/Login";
+import { Login } from "../../features/Login/Login";
 import { createRoute } from "@tanstack/react-router";
 import { rootRoute } from "../__root";
 

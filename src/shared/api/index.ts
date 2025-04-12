@@ -1,7 +1,5 @@
 import { createAxiosClient } from "./axiosApiClient";
-// import { fetchApiClient } from "./fetchApiClient";
 
-const BASE_URL = 'localhost:8000';
+const BASE_URL = 'http://localhost:8000';
 
-export const axiosApi = createAxiosClient(BASE_URL);
-// export const fetchApi = fetchApiClient()
+export const axiosApi = createAxiosClient(BASE_URL); // возвращает get, post, put, и тд
