@@ -1,0 +1,61 @@
+import { JSX } from 'react';
+import styles from './RegistrationForm.module.css';
+
+type RegistrationFormProps = {
+  formTitle: string;
+  email: string;
+  password: string;
+  errors: { [key: string]: string | undefined };
+  touched: { [key: string]: boolean | undefined };
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  isPending: boolean;
+}
+
+export const RegistrationForm = ({
+  formTitle,
+  email,
+  password,
+  errors,
+  touched,
+  handleChange,
+  handleBlur,
+  handleSubmit,
+  isPending,
+}: RegistrationFormProps): JSX.Element => {
+  return (
+    <div className={styles.container}>
+      <div className={styles.card}>
+        <form className={styles.formContainer} onSubmit={handleSubmit}>
+          <h1 className={styles.formTitle}>{formTitle}</h1>
+          <input
+            id="email"
+            type="email"
+            className={`${styles.formInput} ${errors.email && touched.email ? styles.errorInput : ''}`}
+            placeholder="Ваша почта"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={email}
+          />
+          <input
+            id="password"
+            type="password"
+            className={`${styles.formInput} ${errors.password && touched.password ? styles.errorInput : ''}`}
+            placeholder="Ваш пароль"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={password}
+          />
+          <button
+            type="submit"
+            className={styles.formBtn}
+            disabled={Object.keys(errors).length > 0 || isPending}
+          >
+            Зарегистрироваться
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};

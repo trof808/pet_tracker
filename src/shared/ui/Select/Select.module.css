@@ -13,6 +13,7 @@
   align-items: center;
   gap: 6px;
   text-transform: capitalize;
+  border: 1px solid #ccc;
 }
 
 .arrow {
@@ -43,4 +44,12 @@
 
 .selectItem:hover {
   background-color: #f8f8f8;
+}
+
+.hiddenSelect {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 1px;
+  height: 1px;
 }

@@ -1,5 +1,5 @@
-import { JSX, useState } from 'react';
-import styles from './Select.module.css';
+import { JSX, useState, useRef, useEffect } from "react";
+import styles from "./Select.module.css";
 
 type SelectProps = {
   selectedValue: string;
@@ -7,14 +7,11 @@ type SelectProps = {
   onChange: (value: string) => void;
 };
 
-export const Select = ({
-  selectedValue,
-  options,
-  onChange,
-}: SelectProps): JSX.Element => {
+export const Select = ({ selectedValue, options, onChange }: SelectProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
+  const hiddenSelectRef = useRef<HTMLSelectElement>(null);
 
-  const handleToogle = () => {
+  const handleToggle = () => {
     setIsOpen((prev) => !prev);
   };
 
@@ -22,19 +19,42 @@ export const Select = ({
     onChange(value);
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    if (hiddenSelectRef.current) {
+      hiddenSelectRef.current.value = selectedValue;
+    }
+  }, [selectedValue]);
+
   return (
-    // Сделать его на основе тегов select и option
-    <div className={styles.selectContainer}>
-      <button className={styles.selectBtn} onClick={handleToogle}>
+    <div className={styles.selectContainer} data-state={isOpen ? "active" : ""}>
+      <select
+        ref={hiddenSelectRef}
+        className={styles.hiddenSelect}
+        value={selectedValue}
+        onChange={(e) => handleSelect(e.target.value)}
+        aria-label="Выбор опции"
+      >
+        {options.map((value) => (
+          <option key={value} value={value}>
+            {value}
+          </option>
+        ))}
+      </select>
+
+      <button type="button" className={styles.selectBtn} onClick={handleToggle} aria-haspopup="listbox" aria-expanded={isOpen}>
         {selectedValue}
         <span className={styles.arrow} />
       </button>
+
       {isOpen && (
-        <div className={styles.selectMenu}>
+        <div className={styles.selectMenu} role="listbox">
           {options.map((value) => (
             <div
-              className={styles.selectItem}
               key={value}
+              className={styles.selectItem}
+              role="option"
+              aria-selected={value === selectedValue}
               onClick={() => handleSelect(value)}
             >
               {value}

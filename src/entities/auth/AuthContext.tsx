@@ -17,11 +17,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }): JSX.Element
   );
 };
 
-export const useAuthContext = (): AuthContextType => {
+export const useAuth = (): AuthContextType => {
   const data = useContext(AuthContext);
 
   if (!data) {
-    throw new Error("Can not 'useAuthContext' outside of a AuthProvider");
+    throw new Error("Can not 'useAuth' outside of a AuthProvider");
   }
 
   return data;
