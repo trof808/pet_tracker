@@ -14,7 +14,7 @@ export const ProtectedRoute = ({ children }: ProtectedRouteProps): JSX.Element =
     if (!isAuth) {
       router.navigate({ to: '/login' });
     }
-  }, [isAuth]);
+  }, [isAuth, router]);
 
   return <>{children}</>;
 };

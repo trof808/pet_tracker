@@ -6,7 +6,6 @@ import { getEventTopOffset } from '../../../shared/lib/EventTopOffset';
 import { getCardWidthAndLeftOffset } from '../../../shared/lib/cardWithAndLeftOffset';
 import { Task } from '../lib/hooks/useCalendarHandlers';
 
-
 export type CalendarEventsProps = {
   tasks: Task[];
   handleTaskClick: (id: string) => void;
@@ -20,7 +19,7 @@ export const CalendarEvents = ({
   handleTaskDelete,
   handleTaskDone,
 }: CalendarEventsProps): JSX.Element => {
-  const filteredTasks = tasks.filter(task => task.startDateTime !== null);
+  const filteredTasks = tasks.filter((task) => task.startDateTime !== null);
   return (
     <div className={styles.eventContainer}>
       {filteredTasks.map((task) => {
