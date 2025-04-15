@@ -11,6 +11,9 @@ type RegistrationFormProps = {
   handleBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   isPending: boolean;
+  placeholderMail: string;
+  placeholderPassword: string;
+  submitButton: string;
 }
 
 export const RegistrationForm = ({
@@ -23,6 +26,9 @@ export const RegistrationForm = ({
   handleBlur,
   handleSubmit,
   isPending,
+  placeholderMail,
+  placeholderPassword,
+  submitButton,
 }: RegistrationFormProps): JSX.Element => {
   return (
     <div className={styles.container}>
@@ -33,7 +39,7 @@ export const RegistrationForm = ({
             id="email"
             type="email"
             className={`${styles.formInput} ${errors.email && touched.email ? styles.errorInput : ''}`}
-            placeholder="Ваша почта"
+            placeholder={placeholderMail}
             onChange={handleChange}
             onBlur={handleBlur}
             value={email}
@@ -42,7 +48,7 @@ export const RegistrationForm = ({
             id="password"
             type="password"
             className={`${styles.formInput} ${errors.password && touched.password ? styles.errorInput : ''}`}
-            placeholder="Ваш пароль"
+            placeholder={placeholderPassword}
             onChange={handleChange}
             onBlur={handleBlur}
             value={password}
@@ -52,7 +58,7 @@ export const RegistrationForm = ({
             className={styles.formBtn}
             disabled={Object.keys(errors).length > 0 || isPending}
           >
-            Зарегистрироваться
+            {submitButton}
           </button>
         </form>
       </div>

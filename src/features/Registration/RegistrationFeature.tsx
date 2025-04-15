@@ -3,9 +3,11 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useSignUp } from './libs/hooks/useSignUp';
 import { RegistrationForm } from '../../shared/ui/RegistrationForm/RegistrationForm';
+import { useTranslation } from 'react-i18next';
 
 export const Registration = (): JSX.Element => {
   const { mutate, isPending } = useSignUp();
+  const { t } = useTranslation();
 
   const formik = useFormik({
     initialValues: {
@@ -14,9 +16,11 @@ export const Registration = (): JSX.Element => {
     },
     validationSchema: Yup.object({
       email: Yup.string()
-        .email('Неверный адрес электронной почты')
-        .required('Обязательное поле'),
-      password: Yup.string().required('Обязательное поле'),
+        .email(t('validation.email.invalid'))
+        .required(t('validation.email.required')),
+      password: Yup.string()
+        .required(t('validation.password.required'))
+        .min(6, t('validation.password.min')),
     }),
     onSubmit: async (values) => {
       await mutate(values);
@@ -26,7 +30,7 @@ export const Registration = (): JSX.Element => {
 
   return (
     <RegistrationForm
-      formTitle="Регистрация"
+      formTitle={t('registartion.header')}
       email={formik.values.email}
       password={formik.values.password}
       errors={formik.errors}
@@ -35,6 +39,9 @@ export const Registration = (): JSX.Element => {
       handleBlur={formik.handleBlur}
       handleSubmit={formik.handleSubmit}
       isPending={isPending}
+      placeholderMail={t('form.placeholderMail')}
+      placeholderPassword={t('form.placeholderPassword')}
+      submitButton={t('form.registration.submitButton')}
     />
   );
 };

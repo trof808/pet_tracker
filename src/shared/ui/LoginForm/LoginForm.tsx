@@ -11,6 +11,11 @@ type LoginFormProps = {
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   isPending: boolean;
+  placeholderMail: string;
+  placeholderPassword: string;
+  noAcc: string;
+  regLink: string;
+  submitButton: string;
 };
 
 export const LoginForm = ({
@@ -22,6 +27,12 @@ export const LoginForm = ({
   handleChange,
   handleSubmit,
   isPending,
+  placeholderMail,
+  placeholderPassword,
+  noAcc,
+  regLink,
+  submitButton,
+  
 }: LoginFormProps): JSX.Element => {
   return (
     <div className={styles.container}>
@@ -32,7 +43,7 @@ export const LoginForm = ({
             id="email"
             type="email"
             className={`${styles.formInput} ${errors.email && touched.email ? styles.errorInput : ''}`}
-            placeholder="Ваша почта"
+            placeholder={placeholderMail}
             onChange={handleChange}
             value={email}
           />
@@ -40,7 +51,7 @@ export const LoginForm = ({
             id="password"
             type="password"
             className={`${styles.formInput} ${errors.password && touched.password ? styles.errorInput : ''}`}
-            placeholder="Ваш пароль"
+            placeholder={placeholderPassword}
             onChange={handleChange}
             value={password}
           />
@@ -49,14 +60,14 @@ export const LoginForm = ({
             className={styles.formBtn}
             disabled={Object.keys(errors).length > 0 || isPending}
           >
-            Войти
+            {submitButton}
           </button>
         </form>
       </div>
       <div className={styles.cardFooter}>
         <div className={styles.cardFooterDetails}>
-          <span>Нет аккаунта?</span>
-          <Link to="/registration">Регистрация</Link>
+          <span>{noAcc}</span>
+          <Link to="/registration">{regLink}</Link>
         </div>
       </div>
     </div>

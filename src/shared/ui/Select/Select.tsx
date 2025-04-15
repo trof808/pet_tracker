@@ -1,5 +1,5 @@
-import { JSX, useState, useRef, useEffect } from "react";
-import styles from "./Select.module.css";
+import { JSX, useState, useRef, useEffect } from 'react';
+import styles from './Select.module.css';
 
 type SelectProps = {
   selectedValue: string;
@@ -7,7 +7,11 @@ type SelectProps = {
   onChange: (value: string) => void;
 };
 
-export const Select = ({ selectedValue, options, onChange }: SelectProps): JSX.Element => {
+export const Select = ({
+  selectedValue,
+  options,
+  onChange,
+}: SelectProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
   const hiddenSelectRef = useRef<HTMLSelectElement>(null);
 
@@ -27,7 +31,7 @@ export const Select = ({ selectedValue, options, onChange }: SelectProps): JSX.E
   }, [selectedValue]);
 
   return (
-    <div className={styles.selectContainer} data-state={isOpen ? "active" : ""}>
+    <div className={styles.selectContainer} data-state={isOpen ? 'active' : ''}>
       <select
         ref={hiddenSelectRef}
         className={styles.hiddenSelect}
@@ -42,7 +46,13 @@ export const Select = ({ selectedValue, options, onChange }: SelectProps): JSX.E
         ))}
       </select>
 
-      <button type="button" className={styles.selectBtn} onClick={handleToggle} aria-haspopup="listbox" aria-expanded={isOpen}>
+      <button
+        type="button"
+        className={styles.selectBtn}
+        onClick={handleToggle}
+        aria-haspopup="listbox"
+        aria-expanded={isOpen}
+      >
         {selectedValue}
         <span className={styles.arrow} />
       </button>
