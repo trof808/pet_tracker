@@ -43,8 +43,13 @@
   padding: 15px;
   border-radius: 5px;
   border: 1px solid #ced4da;
-  background-color: #fff;
+  background-color:  #fff;
   font-size: 13px;
+  color: black;
+}
+
+.errorInput {
+  border: 2px solid red;
 }
 
 .formInput::placeholder {
@@ -64,6 +69,15 @@
   background-color: #0d6efd;
   color: #fff;
 }
+
+.formBtn:disabled,
+.formBtn:disabled:hover {
+  background-color: #eee;
+  color: #ccc;
+  border: 1px solid  #ccc;
+  cursor: not-allowed;
+}
+
 
 /* Нижняя часть (футер) */
 .cardFooter {

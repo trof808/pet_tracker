@@ -1,9 +1,20 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { JSX, ReactNode, useEffect } from "react";
+import { useRouter } from "@tanstack/react-router";
+import { useAuth } from "../entities/auth/AuthContext";
 
-export const Route = createFileRoute('/ProtectedRoute')({
-  component: RouteComponent,
-})
+type ProtectedRouteProps = {
+  children: ReactNode;
+};
 
-function RouteComponent() {
-  return <div>Hello "/ProtectedRoute"!</div>
-}
+export const ProtectedRoute = ({ children }: ProtectedRouteProps): JSX.Element => {
+  const { isAuth } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isAuth) {
+      router.navigate({ to: '/login' });
+    }
+  }, [isAuth, router]);
+
+  return <>{children}</>;
+};

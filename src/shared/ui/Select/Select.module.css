@@ -1,8 +1,8 @@
-.dropdownContainer {
+.selectContainer {
   position: relative;
 }
 
-.dropdownBtn {
+.selectBtn {
   background-color: #f0f0f0;
   padding: 5px 10px;
   border-radius: 5px;
@@ -13,6 +13,7 @@
   align-items: center;
   gap: 6px;
   text-transform: capitalize;
+  border: 1px solid #ccc;
 }
 
 .arrow {
@@ -23,7 +24,7 @@
   border-top: 5px solid #333;
 }
 
-.dropdownMenu {
+.selectMenu {
   position: absolute;
   z-index: 999;
   background-color: #fff;
@@ -34,13 +35,21 @@
   min-width: 100%;
 }
 
-.dropdownItem {
+.selectItem {
   padding: 8px 12px;
   font-size: 12px;
   color: #333;
   text-transform: capitalize;
 }
 
-.dropdownItem:hover {
+.selectItem:hover {
   background-color: #f8f8f8;
+}
+
+.hiddenSelect {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 1px;
+  height: 1px;
 }
