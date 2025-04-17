@@ -14,6 +14,7 @@ export const Login = (): JSX.Element => {
       email: '',
       password: '',
     },
+    // Можно вынести валидацию в функцию
     validationSchema: Yup.object({
       email: Yup.string()
         .email(t('validation.email.invalid'))

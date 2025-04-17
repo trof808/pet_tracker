@@ -16,6 +16,7 @@ type RegistrationFormProps = {
   submitButton: string;
 }
 
+// entities
 export const RegistrationForm = ({
   formTitle,
   email,

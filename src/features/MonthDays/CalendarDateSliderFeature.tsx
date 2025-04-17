@@ -1,6 +1,7 @@
 import { JSX, useState } from 'react';
 import styles from './CalendarDateSlider.module.css';
 
+// переписать на date-fns
 const aprilDates: Array<{day: number, weekday: string}> = [
   { day: 1, weekday: 'вт' },
   { day: 2, weekday: 'ср' },

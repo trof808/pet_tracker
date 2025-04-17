@@ -3,7 +3,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 
 // Реализуем наш интерфейс на axios
 export const createAxiosClient = (baseURL: string): ApiClient => {
-    const client = axios.create({ baseURL });
+    const client = axios.create({ baseURL, withCredentials: true });
 
     const mapConfig = (config?: RequestConfig): AxiosRequestConfig => ({
         headers: config?.headers,

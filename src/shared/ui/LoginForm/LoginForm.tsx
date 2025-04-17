@@ -18,6 +18,7 @@ type LoginFormProps = {
   submitButton: string;
 };
 
+// Можно в entities. Так как привязано в знанию о бизнес модели приложения
 export const LoginForm = ({
   formTitle,
   email,

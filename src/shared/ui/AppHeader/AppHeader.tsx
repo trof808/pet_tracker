@@ -7,6 +7,8 @@ import notifyIcon from './assets/images/notifyIcon.png'
 import sonicAvatar from './assets/images/sonicAvatar.jpg';
 import themeSwitch from './assets/images/themeSwitch.png';
 
+// Вынести в виджет
+// Сделать фичу с отображением данных о пользователе
 export const AppHeader = (): JSX.Element => {
   return (
     <header className={styles.container}>
