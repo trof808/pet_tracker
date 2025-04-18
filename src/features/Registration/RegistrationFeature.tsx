@@ -1,9 +1,9 @@
 import { JSX } from 'react';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import { useSignUp } from './libs/hooks/useSignUp';
+import { useSignUp } from './lib/hooks/useSignUp';
 import { RegistrationForm } from '../../shared/ui/RegistrationForm/RegistrationForm';
 import { useTranslation } from 'react-i18next';
+import { RegistrationValidationSchema } from './lib/RegistrationValidationSchema';
 
 export const Registration = (): JSX.Element => {
   const { mutate, isPending } = useSignUp();
@@ -14,14 +14,7 @@ export const Registration = (): JSX.Element => {
       email: '',
       password: '',
     },
-    validationSchema: Yup.object({
-      email: Yup.string()
-        .email(t('validation.email.invalid'))
-        .required(t('validation.email.required')),
-      password: Yup.string()
-        .required(t('validation.password.required'))
-        .min(6, t('validation.password.min')),
-    }),
+    validationSchema: RegistrationValidationSchema,
     onSubmit: async (values) => {
       await mutate(values);
     },
