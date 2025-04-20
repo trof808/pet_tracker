@@ -14,8 +14,7 @@ export const useSignIn = (): useSignInReturn => {
     mutationFn: async (body: BodyType) => {
       return await authApi.signIn(body);
     },
-    onSuccess: (data: { access_token: string }) => {
-      localStorage.setItem('token', data.access_token)
+    onSuccess: () => {
       // тут нам токен приходит и тип токена. :)
       setIsAuth(true);
       router.navigate({

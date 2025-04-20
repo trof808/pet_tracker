@@ -6,7 +6,6 @@ const eventApiService = (ApiClient: ApiClient) => {
     getTasks: async (day: string) => {
       return await ApiClient.get('/api/v1/tasks', {
         params: { day },
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
     },
   };
