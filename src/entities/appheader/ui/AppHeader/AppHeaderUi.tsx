@@ -9,12 +9,12 @@ import themeSwitch from './images/themeSwitch.png';
 
 // Вынести в виджет
 // Сделать фичу с отображением данных о пользователе
-export const AppHeaderUi = (): JSX.Element => {
+export const AppHeaderUi = (data: { userMail?: string }): JSX.Element => {
   return (
     <header className={styles.container}>
       <div className={styles.userDetails}>
         <img src={sonicAvatar} alt="Avatar" className={styles.avatar} />
-        <span className={styles.userName}>Ivan Ivanov</span>
+        <span className={styles.userName}>{data.userMail}</span>
       </div>
       <div className={styles.actions}>
         <button className={styles.notificationBtn}>
