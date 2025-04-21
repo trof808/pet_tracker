@@ -8,10 +8,14 @@ type UserInfo = {
 };
 
 export const useCheckAuth = (): UserInfo => {
+  const getUserInfo = async () => {
+    const res = await authApi.checkAuth();
+    return res.data;
+  };
+
   const { data } = useQuery({
     queryKey: ['userInfo'],
-    queryFn: authApi.checkAuth,
-    select: (res) => res.data,
+    queryFn: getUserInfo,
   });
 
   return data ?? {};

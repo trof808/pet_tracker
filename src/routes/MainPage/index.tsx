@@ -5,12 +5,10 @@ import { createRoute } from '@tanstack/react-router';
 import { rootRoute } from '../__root';
 import { ActionsToolbar } from '../../widgets/ActionsToolbar/ActionsToolbar';
 import { CalendarDateSlider } from '../../features/MonthDays/CalendarDateSliderFeature';
-import { ProtectedRoute } from '../ProtectedRoute';
 
 const MainPage = (): JSX.Element => {
   return (
     <>
-      <ProtectedRoute>
         <AppHeaderWidget />
         {/* widget/calendarToolbar */}
         <ActionsToolbar />
@@ -18,7 +16,6 @@ const MainPage = (): JSX.Element => {
         <CalendarDateSlider />
         {/* feataure/calendar */}
         <Calendar />
-      </ProtectedRoute>
     </>
   );
 };
