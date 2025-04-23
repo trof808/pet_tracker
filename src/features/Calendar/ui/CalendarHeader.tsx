@@ -2,7 +2,7 @@ import { JSX } from 'react';
 import styles from '../Calendar.module.css';;
 import { EventCard } from '../../../entities/events/ui/EventCard/EventCard';
 import { Task } from '../lib/hooks/useCalendarHandlers';
-import { getCardHeight } from '../../../shared/lib/cardHeight';
+import { getCardHeight } from '../../../entities/events/ui/EventCard/utils/cardHeight';
 
 type CalendarHeaderProps = {
   allDayTasks: Task[];

@@ -1,26 +1,9 @@
 import { JSX } from 'react';
 import { MonthSelect } from '../../entities/calendar/ui/MonthSelect/MonthSelect';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { FiltersDate, setDate } from '../../store/slices/filtersSlice';
+import { useSelectMonth } from './hooks/useSelectMonth';
 
 export const MonthSelectFeature = (): JSX.Element => {
-  const isoDate = useSelector(({ filters }: { filters: { date: FiltersDate } }) => filters.date);
-  const dispatch = useDispatch();
-
-  const [y, m, d] = isoDate.split('-');
-
-  const monthNames = Array.from({ length: 12 }, (_, i) =>
-    new Date(2025, i, 1).toLocaleString('default', { month: 'long' })
-  );
-
-  const monthIndex = parseInt(m) - 1;
-  const monthTitle = monthNames[monthIndex];
-
-  const onChange = (newMonth: string) => {
-    const newMonthId = monthNames.indexOf(newMonth);
-    dispatch(setDate(`${y}-${(newMonthId + 1).toString().padStart(2, '0')}-${d}`));
-  };
+  const { monthTitle, onChange, monthNames } = useSelectMonth();
 
   return <MonthSelect monthTitle={monthTitle} onChange={onChange} monthNames={monthNames} />;
 };

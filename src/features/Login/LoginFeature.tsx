@@ -1,7 +1,7 @@
 import { JSX } from 'react';
 import { useFormik } from 'formik';
 import { useSignIn } from './lib/hooks/useSignIn';
-import { LoginForm } from '../../entities/LoginForm/LoginForm';
+import { LoginForm } from '../../entities/auth/LoginForm/LoginForm';
 import { useTranslation } from 'react-i18next';
 import { LoginValidationSchema } from './lib/LoginValidationSchema';
 
