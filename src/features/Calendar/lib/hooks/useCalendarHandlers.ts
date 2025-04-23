@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { EndDateTime, EventCardStatus, StartDateTime, TagType } from '../../../../entities/events/ui/EventCard/EventCard';
 import { useGetEvents } from './useGetEvents';
+import { useSelector } from 'react-redux';
 
 export type Task = {
   id: string;
@@ -20,7 +21,8 @@ type useCalendarHandlersReturn = {
 };
 
 export const useCalendarHandlers = (): useCalendarHandlersReturn => {
-  const tasksData = useGetEvents();
+  const currentDate = useSelector(({ filters }: { filters: {date: string}}) => filters.date);
+  const tasksData = useGetEvents(currentDate);
 
   const [tasks, setTasks] = useState<Task[]>([]);  
 
@@ -29,9 +31,7 @@ export const useCalendarHandlers = (): useCalendarHandlersReturn => {
   );
 
   useEffect(() => {
-    if (tasksData) {
       setTasks(tasksData);
-    }
   }, [tasksData]);
 
   // Можно в useCallback
