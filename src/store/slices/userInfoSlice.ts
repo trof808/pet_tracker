@@ -1,11 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-type State = {
-  id: number;
-  email: string;
+export type userId = number;
+export type userEmail = string;
+
+export type UserState = {
+  id: userId;
+  email: userEmail;
 };
 
-const initialState: State = {
+const initialState: UserState = {
   id: 0,
   email: '',
 };

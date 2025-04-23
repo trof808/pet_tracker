@@ -1,16 +1,26 @@
-import { JSX, useState } from 'react';
+import { JSX } from 'react';
 import { MonthSelect } from '../../entities/calendar/ui/MonthSelect/MonthSelect';
-
-// как я понял, мы тут в дальнейшем будем работать с хранилищем и передавать детишкам через пропсы monthTitle и onChange
-// пока что используем заглушку в виде useState
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { FiltersDate, setDate } from '../../store/slices/filtersSlice';
 
 export const MonthSelectFeature = (): JSX.Element => {
-  const currentMonth = new Date().toLocaleString('default', { month: 'long' });
+  const isoDate = useSelector(({ filters }: { filters: { date: FiltersDate } }) => filters.date);
+  const dispatch = useDispatch();
 
-  const [selectedMonth, setSelectedMonth] = useState(currentMonth);
+  const [y, m, d] = isoDate.split('-');
 
-  const monthTitle = selectedMonth;
-  const onChange = (newMonth: string) => setSelectedMonth(newMonth);
+  const monthNames = Array.from({ length: 12 }, (_, i) =>
+    new Date(2025, i, 1).toLocaleString('default', { month: 'long' })
+  );
 
-  return <MonthSelect monthTitle={monthTitle} onChange={onChange} />;
+  const monthIndex = parseInt(m) - 1;
+  const monthTitle = monthNames[monthIndex];
+
+  const onChange = (newMonth: string) => {
+    const newMonthId = monthNames.indexOf(newMonth);
+    dispatch(setDate(`${y}-${(newMonthId + 1).toString().padStart(2, '0')}-${d}`));
+  };
+
+  return <MonthSelect monthTitle={monthTitle} onChange={onChange} monthNames={monthNames} />;
 };
