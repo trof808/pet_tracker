@@ -1,7 +1,6 @@
 import { JSX } from "react";
 import { TodayButton } from "../../entities/calendar/ui/TodayButton/TodayButton";
-import { useSelector } from "react-redux";
-import { FiltersDate, setDate } from "../../store/slices/filtersSlice";
+import { setDate } from "../../store/slices/filtersSlice";
 import { useDispatch } from "react-redux";
 
 
