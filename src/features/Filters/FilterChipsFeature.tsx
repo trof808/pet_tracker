@@ -1,13 +1,15 @@
 import { JSX } from 'react';
+import { useGetTags } from './hooks/useGetTags';
 import { TagChip } from '../../entities/chip/TagChip';
 
 export const FilterChipsFeature = (): JSX.Element => {
-  const tag = {
-    color: 'red',
-    title: 'Личное',
-  };
+  const tags = useGetTags();
 
   return (
-    <TagChip color={tag.color} title={tag.title} />
-  )
+    <>
+      {tags.map((tag) => (
+        <TagChip color={tag.color} title={tag.title} key={tag.title} />
+      ))}
+    </>
+  );
 };
