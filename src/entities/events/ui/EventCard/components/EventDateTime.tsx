@@ -1,6 +1,6 @@
 import { JSX } from "react";
 import styles from '../EventCard.module.css';
-import { formattedDate } from "../../../../../shared/lib/date";
+import { formattedDate } from "../../../../../shared/ui/EventCard/lib/date";
 
 export type EventDateTimeProps = {
   startDateTime: string | null,

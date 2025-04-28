@@ -3,13 +3,13 @@ import { eventApi } from '../../../../entities/events/services/eventsApiClient';
 import { Task } from './useCalendarHandlers';
 
 
-export const useGetEvents = (): Task[] => {
+export const useGetEvents = (date: string): Task[] => {
   const getData = async () => {
-    return await eventApi.getTasks(new Date().toISOString().split('T')[0]);
+    return await eventApi.getTasks(date);
   };
 
   const { data } = useQuery({
-    queryKey: ['events'],
+    queryKey: ['events', date],
     queryFn: getData,
     select: (data) => {
       if (Array.isArray(data)) {

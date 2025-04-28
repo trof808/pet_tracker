@@ -1,9 +1,9 @@
 import { JSX } from 'react';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import { useSignIn } from './lib/hooks/useSignIn';
-import { LoginForm } from '../../shared/ui/LoginForm/LoginForm';
+import { LoginForm } from '../../entities/auth/LoginForm/LoginForm';
 import { useTranslation } from 'react-i18next';
+import { LoginValidationSchema } from './lib/LoginValidationSchema';
 
 export const Login = (): JSX.Element => {
   const { mutate, isPending } = useSignIn();
@@ -15,12 +15,7 @@ export const Login = (): JSX.Element => {
       password: '',
     },
     // Можно вынести валидацию в функцию
-    validationSchema: Yup.object({
-      email: Yup.string()
-        .email(t('validation.email.invalid'))
-        .required(t('validation.email.required')),
-      password: Yup.string().required(t('validation.password.required')),
-    }),
+    validationSchema: LoginValidationSchema,
     onSubmit: async (values) => {
       await mutate(values);
     },

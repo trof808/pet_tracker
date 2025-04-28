@@ -12,11 +12,11 @@ export const useSignUp = (): useSignInReturn => {
     mutationFn: async (body: BodyType) => {
       return await authApi.signUp(body);
     },
-    onSuccess: (data) => {
-      console.log(data); // тут нам токен приходит и тип токена. :)
+    onSuccess: () => {
+      // тут нам токен приходит и тип токена. :)
       router.navigate({
         to: '/login',
-      })
+      });
     },
     onError: (error) => {
       console.error(error, 'Упс, ошибка c каким-то кодом (позже обработаем)');

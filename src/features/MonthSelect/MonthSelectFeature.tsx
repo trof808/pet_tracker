@@ -1,16 +1,9 @@
-import { JSX, useState } from 'react';
+import { JSX } from 'react';
 import { MonthSelect } from '../../entities/calendar/ui/MonthSelect/MonthSelect';
-
-// как я понял, мы тут в дальнейшем будем работать с хранилищем и передавать детишкам через пропсы monthTitle и onChange
-// пока что используем заглушку в виде useState
+import { useSelectMonth } from './hooks/useSelectMonth';
 
 export const MonthSelectFeature = (): JSX.Element => {
-  const currentMonth = new Date().toLocaleString('default', { month: 'long' });
+  const { monthTitle, onChange, monthNames } = useSelectMonth();
 
-  const [selectedMonth, setSelectedMonth] = useState(currentMonth);
-
-  const monthTitle = selectedMonth;
-  const onChange = (newMonth: string) => setSelectedMonth(newMonth);
-
-  return <MonthSelect monthTitle={monthTitle} onChange={onChange} />;
+  return <MonthSelect monthTitle={monthTitle} onChange={onChange} monthNames={monthNames} />;
 };

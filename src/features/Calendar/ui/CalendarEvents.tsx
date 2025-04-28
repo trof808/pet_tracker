@@ -1,9 +1,9 @@
 import { JSX } from 'react';
 import styles from '../Calendar.module.css';
 import { EventCard } from '../../../entities/events/ui/EventCard/EventCard';
-import { getCardHeight } from '../../../shared/lib/cardHeight';
-import { getEventTopOffset } from '../../../shared/lib/EventTopOffset';
-import { getCardWidthAndLeftOffset } from '../../../shared/lib/cardWithAndLeftOffset';
+import { getCardHeight } from '../../../entities/events/ui/EventCard/utils/cardHeight';
+import { getCardWidthAndLeftOffset } from '../../../entities/events/ui/EventCard/utils/cardWithAndLeftOffset';
+import { getEventTopOffset } from '../../../entities/events/ui/EventCard/utils/EventTopOffset';
 import { Task } from '../lib/hooks/useCalendarHandlers';
 
 export type CalendarEventsProps = {

@@ -1,20 +1,24 @@
-import { JSX, ReactNode, useEffect } from "react";
-import { useRouter } from "@tanstack/react-router";
-import { useAuth } from "../entities/auth/AuthContext";
+import { JSX, ReactNode, useEffect } from 'react';
+import { useRouter } from '@tanstack/react-router';
+import { useCheckAuth } from '../features/AppHeader/lib/hooks/useCheckAuth';
 
 type ProtectedRouteProps = {
   children: ReactNode;
 };
 
-export const ProtectedRoute = ({ children }: ProtectedRouteProps): JSX.Element => {
-  const { isAuth } = useAuth();
+export const ProtectedRoute = ({
+  children,
+}: ProtectedRouteProps): JSX.Element => {
+  const { auth } = useCheckAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (!isAuth) {
+    if (auth) {
+      router.navigate({ to: '/main' });
+    } else {
       router.navigate({ to: '/login' });
     }
-  }, [isAuth, router]);
+  }, [auth, router]);
 
   return <>{children}</>;
 };
