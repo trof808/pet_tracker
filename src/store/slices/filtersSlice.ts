@@ -12,6 +12,7 @@ export type FiltersState = {
 
 const initialState: FiltersState = {
   date: new Date().toISOString().split('T')[0],
+  // Убрать месяц. Хранить всю дату в одном поле
   month: new Date().toLocaleString('default', { month: 'long' }),
   tags: [],
 }

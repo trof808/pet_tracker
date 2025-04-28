@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
-import { useGetEvents } from '../../Calendar/lib/hooks/useGetEvents';
 import { useDispatch } from 'react-redux';
 import { setTags } from '../../../store/slices/filtersSlice';
 import { useEffect } from 'react';
+import { useGetEvents } from '../../Calendar/hooks/useGetEvents';
 
 type FiltersTag = {
   title: string;

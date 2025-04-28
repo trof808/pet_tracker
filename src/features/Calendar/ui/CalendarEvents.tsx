@@ -4,7 +4,7 @@ import { EventCard } from '../../../entities/events/ui/EventCard/EventCard';
 import { getCardHeight } from '../../../entities/events/ui/EventCard/utils/cardHeight';
 import { getCardWidthAndLeftOffset } from '../../../entities/events/ui/EventCard/utils/cardWithAndLeftOffset';
 import { getEventTopOffset } from '../../../entities/events/ui/EventCard/utils/EventTopOffset';
-import { Task } from '../lib/hooks/useCalendarHandlers';
+import { Task } from '../hooks/useCalendarHandlers';
 
 export type CalendarEventsProps = {
   tasks: Task[];

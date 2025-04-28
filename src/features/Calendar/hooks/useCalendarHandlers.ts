@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { EndDateTime, EventCardStatus, StartDateTime, TagType } from '../../../../entities/events/ui/EventCard/EventCard';
+import { EndDateTime, EventCardStatus, StartDateTime, TagType } from '../../../entities/events/ui/EventCard/EventCard';
 import { useGetEvents } from './useGetEvents';
 import { useSelector } from 'react-redux';
 

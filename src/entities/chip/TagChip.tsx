@@ -6,6 +6,7 @@ type TagProps = {
   title: string;
 }
 
+// chip это не сущность приложения. Это просто низкоуровневый компонент из ui kit
 export const TagChip = ({ color, title }: TagProps): JSX.Element => {
   return (
     <button className={styles.TagChip} type="button">

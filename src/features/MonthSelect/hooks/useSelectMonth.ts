@@ -8,12 +8,14 @@ type UseSelectMonnthReturn = {
   monthNames: string[]  
 }
 
+// Тут можно было использовать date-fns для работы с датами
 export const useSelectMonth = (): UseSelectMonnthReturn => {
   const isoDate = useSelector(({ filters }: { filters: { date: FiltersDate } }) => filters.date);
   const dispatch = useDispatch();
 
   const [y, m, d] = isoDate.split('-');
 
+  // Можно вынести из хука
   const monthNames = Array.from({ length: 12 }, (_, i) =>
     new Date(2025, i, 1).toLocaleString('default', { month: 'long' })
   );

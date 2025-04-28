@@ -1,8 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import { eventApi } from '../../../../entities/events/services/eventsApiClient';
 import { Task } from './useCalendarHandlers';
+import { eventApi } from '../../../entities/events/services/eventsApiClient';
 
 
+// Больше относится к entities/events/hooks
+// export const useGetEvents = ({ date }: Filters): Task[] => {
 export const useGetEvents = (date: string): Task[] => {
   const getData = async () => {
     return await eventApi.getTasks(date);
