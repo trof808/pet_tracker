@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { EndDateTime, EventCardStatus, StartDateTime, TagType } from '../../../entities/events/ui/EventCard/EventCard';
-import { useGetEvents } from './useGetEvents';
+import { useGetEvents } from '../../../entities/events/hooks/useGetEvents';
 import { useSelector } from 'react-redux';
 
 export type Task = {

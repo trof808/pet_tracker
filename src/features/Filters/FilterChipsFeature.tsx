@@ -1,6 +1,6 @@
 import { JSX } from 'react';
 import { useGetTags } from './hooks/useGetTags';
-import { TagChip } from '../../entities/chip/TagChip';
+import { Chip } from '../../shared/chip/Chip';
 
 export const FilterChipsFeature = (): JSX.Element => {
   const tags = useGetTags();
@@ -8,7 +8,7 @@ export const FilterChipsFeature = (): JSX.Element => {
   return (
     <>
       {tags.map((tag) => (
-        <TagChip color={tag.color} title={tag.title} key={tag.title} />
+        <Chip color={tag.color} title={tag.title} key={tag.title} />
       ))}
     </>
   );

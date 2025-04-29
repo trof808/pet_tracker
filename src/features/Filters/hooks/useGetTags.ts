@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { setTags } from '../../../store/slices/filtersSlice';
 import { useEffect } from 'react';
-import { useGetEvents } from '../../Calendar/hooks/useGetEvents';
+import { useGetEvents } from '../../../entities/events/hooks/useGetEvents';
 
 type FiltersTag = {
   title: string;
@@ -17,13 +17,14 @@ type FiltersStore = {
   };
 };
 
+const tagsMap = new Map();
+
 export const useGetTags = (): Array<FiltersTag> => {
   const currentDate = useSelector(({ filters }: FiltersStore) => filters.date);
   const tasksData = useGetEvents(currentDate);
   const dispatch = useDispatch();
 
   const allTags = tasksData.map((task) => task.tag);
-  const tagsMap = new Map();
 
   allTags.forEach((tag) => {
     tagsMap.set(tag.title, tag);

@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { Task } from './useCalendarHandlers';
-import { eventApi } from '../../../entities/events/services/eventsApiClient';
+import { Task } from '../../../features/Calendar/hooks/useCalendarHandlers';
+import { eventApi } from '../services/eventsApiClient';
 
 
 // Больше относится к entities/events/hooks
