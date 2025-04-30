@@ -11,7 +11,6 @@ export type FiltersState = {
 
 const initialState: FiltersState = {
   date: format(new Date(), 'yyyy-MM-dd'),
-  // Убрать месяц. Хранить всю дату в одном поле
   tags: [],
 }
 

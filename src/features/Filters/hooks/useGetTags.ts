@@ -17,7 +17,6 @@ type FiltersStore = {
   };
 };
 
-const tagsMap = new Map();
 
 export const useGetTags = (): FiltersTag[] => {
   const currentDate = useSelector(({ filters }: FiltersStore) => filters.date);
@@ -25,6 +24,7 @@ export const useGetTags = (): FiltersTag[] => {
   const dispatch = useDispatch();
 
   const allTags = tasksData.map((task) => task.tag);
+  const tagsMap = new Map();
 
   allTags.forEach((tag) => {
     tagsMap.set(tag.title, tag);
