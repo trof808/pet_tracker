@@ -13,13 +13,13 @@ type FiltersStore = {
   filters: {
     date: string;
     month?: string;
-    tags?: Array<FiltersTag>;
+    tags?: FiltersTag[];
   };
 };
 
 const tagsMap = new Map();
 
-export const useGetTags = (): Array<FiltersTag> => {
+export const useGetTags = (): FiltersTag[] => {
   const currentDate = useSelector(({ filters }: FiltersStore) => filters.date);
   const tasksData = useGetEvents(currentDate);
   const dispatch = useDispatch();

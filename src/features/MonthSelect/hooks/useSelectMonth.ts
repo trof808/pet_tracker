@@ -1,32 +1,35 @@
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { FiltersDate, setDate } from "../../../store/slices/filtersSlice";
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { FiltersDate, setDate } from '../../../store/slices/filtersSlice';
+import { format, getDate, getYear } from 'date-fns';
+import { ru } from 'date-fns/locale';
+import { getMonthNames } from '../utils/getMonthNames';
 
 type UseSelectMonnthReturn = {
-  monthTitle: string,
-  onChange: (newMonth: string) => void,
-  monthNames: string[]  
-}
+  monthTitle: string;
+  onChange: (newMonth: string) => void;
+  monthNames: string[];
+};
 
-// Тут можно было использовать date-fns для работы с датами
 export const useSelectMonth = (): UseSelectMonnthReturn => {
   const isoDate = useSelector(({ filters }: { filters: { date: FiltersDate } }) => filters.date);
   const dispatch = useDispatch();
 
-  const [y, m, d] = isoDate.split('-');
+  const dateObj = new Date(isoDate);
+  const y = getYear(dateObj);
+  const d = getDate(dateObj);
 
-  // Можно вынести из хука
-  const monthNames = Array.from({ length: 12 }, (_, i) =>
-    new Date(2025, i, 1).toLocaleString('default', { month: 'long' })
-  );
+  const monthNames = getMonthNames(dateObj);
 
-  const monthIndex = parseInt(m) - 1;
-  const monthTitle = monthNames[monthIndex];
+  const monthTitle = format(dateObj, 'LLLL', { locale: ru });
 
   const onChange = (newMonth: string) => {
-    const newMonthId = monthNames.indexOf(newMonth);
-    dispatch(setDate(`${y}-${(newMonthId + 1).toString().padStart(2, '0')}-${d}`));
+    const newMonthIndex = monthNames.indexOf(newMonth);
+    const newDate = new Date(y, newMonthIndex, d);
+    const newIso = format(newDate, 'yyyy-MM-dd');
+    if (newMonth === monthTitle) return;
+    dispatch(setDate(newIso));
   };
-  
+
   return { monthTitle, onChange, monthNames };
 };

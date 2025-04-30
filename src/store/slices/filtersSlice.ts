@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { format } from "date-fns";
 
 export type FiltersDate = string;
 export type FiltersTags = string[];
@@ -9,7 +10,7 @@ export type FiltersState = {
 }
 
 const initialState: FiltersState = {
-  date: new Date().toISOString().split('T')[0],
+  date: format(new Date(), 'yyyy-MM-dd'),
   // Убрать месяц. Хранить всю дату в одном поле
   tags: [],
 }

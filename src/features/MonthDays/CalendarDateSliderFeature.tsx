@@ -8,7 +8,6 @@ export const CalendarDateSlider = (): JSX.Element => {
   return (
     <div className={styles.sliderContainer}>
       {formattedDates.map(({ day, weekday }) => (
-        // Вынести в компонент
         <CalendarDateSliderItem
           day={day}
           key={day}

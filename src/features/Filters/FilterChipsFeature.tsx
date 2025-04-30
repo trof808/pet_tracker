@@ -1,6 +1,6 @@
 import { JSX } from 'react';
 import { useGetTags } from './hooks/useGetTags';
-import { Chip } from '../../shared/chip/Chip';
+import { Chip } from '../../shared/ui/Chip/Chip';
 
 export const FilterChipsFeature = (): JSX.Element => {
   const tags = useGetTags();
