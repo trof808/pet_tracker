@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { authApi } from '../../../../entities/auth/services/authApi';
 import { useDispatch } from 'react-redux';
-import { setUserInfo } from '../../../../store/slices/userInfoSlice';
+import { setUserInfo } from '../../../entities/auth/services/model/userInfoSlice';
+import { authApi } from '../../../entities/auth/services/authApi';
 
 type UserInfo = {
   auth?: boolean;

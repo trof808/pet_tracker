@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userInfoReducer from './slices/userInfoSlice';
-import filtersReducer from './slices/filtersSlice';
+import userInfoReducer from '../entities/auth/services/model/userInfoSlice';
+import filtersReducer from '../entities/calendar/ui/model/filtersSlice';
 
 
 export const store = configureStore({

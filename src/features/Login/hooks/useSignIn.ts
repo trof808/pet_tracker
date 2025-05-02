@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from '@tanstack/react-router';
-import { authApi } from '../../../../entities/auth/services/authApi';
+import { authApi } from '../../../entities/auth/services/authApi';
 
 type BodyType = { email: string; password: string };
 type useSignInReturn = { mutate: (body: BodyType) => void; isPending: boolean };

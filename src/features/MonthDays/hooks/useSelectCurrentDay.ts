@@ -2,7 +2,7 @@ import { eachDayOfInterval, endOfMonth, format, getDate, getMonth, getYear, star
 import { ru } from 'date-fns/locale';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { FiltersDate, setDate } from '../../../store/slices/filtersSlice';
+import { FiltersDate, setDate } from '../../../entities/calendar/ui/model/filtersSlice';
 
 export type useSelectCurrentDayReturn = {
   formattedDates: { day: number; weekday: string }[],

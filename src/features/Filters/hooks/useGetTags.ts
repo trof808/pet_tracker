@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { setTags } from '../../../store/slices/filtersSlice';
+import { setTags } from '../../../entities/calendar/ui/model/filtersSlice';
 import { useEffect } from 'react';
 import { useGetEvents } from '../../../entities/events/hooks/useGetEvents';
 

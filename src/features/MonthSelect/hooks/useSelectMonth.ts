@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { FiltersDate, setDate } from '../../../store/slices/filtersSlice';
+import { FiltersDate, setDate } from '../../../entities/calendar/ui/model/filtersSlice';
 import { format, getDate, getYear } from 'date-fns';
 import { ru } from 'date-fns/locale';
 import { getMonthNames } from '../utils/getMonthNames';

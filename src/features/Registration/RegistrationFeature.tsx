@@ -1,9 +1,9 @@
 import { JSX } from 'react';
 import { useFormik } from 'formik';
-import { useSignUp } from './lib/hooks/useSignUp';
+import { useSignUp } from './hooks/useSignUp';
 import { RegistrationForm } from '../../entities/auth/ui/RegistrationForm/RegistrationForm';
 import { useTranslation } from 'react-i18next';
-import { RegistrationValidationSchema } from './lib/RegistrationValidationSchema';
+import { RegistrationValidationSchema } from './utils/RegistrationValidationSchema';
 
 export const Registration = (): JSX.Element => {
   const { mutate, isPending } = useSignUp();
