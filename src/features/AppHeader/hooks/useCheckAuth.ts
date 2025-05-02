@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useDispatch } from 'react-redux';
-import { setUserInfo } from '../../../entities/auth/services/model/userInfoSlice';
+import { setUserInfo } from '../../../entities/auth/store/userInfoSlice';
 import { authApi } from '../../../entities/auth/services/authApi';
 
 type UserInfo = {

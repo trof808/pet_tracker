@@ -22,7 +22,7 @@ type useCalendarHandlersReturn = {
 
 export const useCalendarHandlers = (): useCalendarHandlersReturn => {
   const currentDate = useSelector(({ filters }: { filters: {date: string}}) => filters.date);
-  const tasksData = useGetEvents(currentDate);
+  const tasksData = useGetEvents({ date: currentDate });
 
   const [tasks, setTasks] = useState<Task[]>([]);  
 
