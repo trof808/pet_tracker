@@ -5,6 +5,7 @@ import { createRoute } from '@tanstack/react-router';
 import { rootRoute } from '../__root';
 import { ActionsToolbar } from '../../widgets/ActionsToolbar/ActionsToolbar';
 import { CalendarDateSlider } from '../../features/MonthDays/CalendarDateSliderFeature';
+import { FooterNavWidget } from '../../widgets/FooterNav/FooterNavWidget';
 
 const MainPage = (): JSX.Element => {
   return (
@@ -16,6 +17,7 @@ const MainPage = (): JSX.Element => {
         <CalendarDateSlider />
         {/* feataure/calendar */}
         <Calendar />
+        <FooterNavWidget />
     </>
   );
 };

@@ -12,6 +12,7 @@
 .day, .weekday {
   text-transform: capitalize;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .active {

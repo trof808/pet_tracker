@@ -17,7 +17,6 @@ export const CalendarDateSliderItem = ({
 }: CalendarDateSliderItemProps): JSX.Element => {
   return (
     <div
-      // Лучше использовать библиотеку classnames
       className={cn(styles.dateItem, {
         [styles.active]: selectedDay === day,
       })}
