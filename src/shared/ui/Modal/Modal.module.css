@@ -1,0 +1,87 @@
+.modal {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, .4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: .5s;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.modal.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.content {
+  padding: 20px;
+  border-radius: 12px;
+  background-color: white;
+  width: 50vh;
+  transform: scale(.5);
+  transition: .4s all;
+}
+
+.content.active {
+  transform: scale(1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  border-bottom: 1px solid #837BE1;
+}
+
+.title {
+  font-size: 18px;
+  color: black;
+}
+
+.closeBtn {
+  background: transparent;
+  border: none;
+  font-size: 30px;
+  padding: 0;
+  color: #837BE1;
+  cursor: pointer;
+}
+
+.body {
+  text-align: left;
+  color: black;
+  border-bottom: 1px solid #837BE1;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px 0;
+}
+
+.btnSecondary,
+.btnPrimary {
+  margin-left: 8px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btnSecondary {
+  background: #DAD8F2;
+  color: grey;
+}
+
+.btnPrimary {
+  background: #837BE1;
+  color: #fff;
+}
