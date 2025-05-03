@@ -4,9 +4,10 @@ import styles from './Modal.module.css';
 type ModalProps  = {
   active: boolean;
   setActive: (status: boolean) => void;
+  title: string,
 }
 
-export const Modal = ({ active, setActive }: ModalProps): JSX.Element => {
+export const Modal = ({ active, setActive, title }: ModalProps): JSX.Element => {
   return (
     <div
       className={active ? `${styles.modal} ${styles.active}` : styles.modal}
@@ -19,7 +20,7 @@ export const Modal = ({ active, setActive }: ModalProps): JSX.Element => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className={styles.header}>
-          <h2 className={styles.title}>Заголовок модального окна</h2>
+          <h2 className={styles.title}>{title}</h2>
           <button
             className={styles.closeBtn}
             onClick={() => setActive(false)}
@@ -29,7 +30,7 @@ export const Modal = ({ active, setActive }: ModalProps): JSX.Element => {
         </div>
 
         <div className={styles.body}>
-          <p>Тело модального окна</p>
+          <p>Content goes here...</p>
         </div>
 
         <div className={styles.footer}>

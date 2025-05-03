@@ -1,16 +1,21 @@
-import { JSX, useState } from 'react';
+import { JSX } from 'react';
 import styles from './CreateTaskButton.module.css';
 import CreateTaskBtn from './assets/icons/CreateTaskBtn.svg';
 import { Modal } from '../../../../shared/ui/Modal/Modal';
 
-export const CreateTaskButton = (): JSX.Element => {
-  const [modalActive, setModalActive] = useState(true);
+type CreateTaskButtonProps = {
+  isActive: boolean,
+  setIsActive: (active: boolean) => void;
+  title: string,
+}
+
+export const CreateTaskButton = ({ isActive, setIsActive, title }: CreateTaskButtonProps): JSX.Element => {
   return (
     <>
-      <button className={styles.btn} onClick={() => setModalActive(true)}>
+      <button className={styles.btn} onClick={() => setIsActive(true)}>
         <img src={CreateTaskBtn} alt="Create Task Button" />
       </button>
-      <Modal active={modalActive} setActive={setModalActive}/>
+      <Modal active={isActive} setActive={setIsActive} title={title} />
     </>
   );
 };

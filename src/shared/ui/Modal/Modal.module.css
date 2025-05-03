@@ -1,7 +1,7 @@
 .modal {
   height: 100vh;
   width: 100vw;
-  background-color: rgba(0, 0, 0, .4);
+  background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
   top: 0;
   left: 0;
@@ -9,7 +9,7 @@
   justify-content: center;
   align-items: center;
   opacity: 0;
-  transition: .5s;
+  transition: 0.5s;
   pointer-events: none;
   z-index: 15;
 }
@@ -24,8 +24,8 @@
   border-radius: 12px;
   background-color: white;
   width: 50vh;
-  transform: scale(.5);
-  transition: .4s all;
+  transform: scale(0.5);
+  transition: 0.4s all;
 }
 
 .content.active {
@@ -37,7 +37,7 @@
   justify-content: space-between;
   align-items: center;
   text-align: left;
-  border-bottom: 1px solid #837BE1;
+  border-bottom: 1px solid #837be1;
 }
 
 .title {
@@ -50,14 +50,14 @@
   border: none;
   font-size: 30px;
   padding: 0;
-  color: #837BE1;
+  color: #837be1;
   cursor: pointer;
 }
 
 .body {
   text-align: left;
   color: black;
-  border-bottom: 1px solid #837BE1;
+  border-bottom: 1px solid #837be1;
 }
 
 .footer {
@@ -77,11 +77,11 @@
 }
 
 .btnSecondary {
-  background: #DAD8F2;
+  background: #dad8f2;
   color: grey;
 }
 
 .btnPrimary {
-  background: #837BE1;
+  background: #837be1;
   color: #fff;
 }
