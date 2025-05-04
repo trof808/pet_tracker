@@ -1,13 +1,14 @@
-import { JSX } from 'react';
+import React, { JSX } from 'react';
 import styles from './Modal.module.css';
 
 type ModalProps  = {
   active: boolean;
   setActive: (status: boolean) => void;
   title: string,
+  children: React.ReactNode
 }
 
-export const Modal = ({ active, setActive, title }: ModalProps): JSX.Element => {
+export const Modal = ({ active, setActive, title, children }: ModalProps): JSX.Element => {
   return (
     <div
       className={active ? `${styles.modal} ${styles.active}` : styles.modal}
@@ -28,27 +29,7 @@ export const Modal = ({ active, setActive, title }: ModalProps): JSX.Element => 
             ×
           </button>
         </div>
-
-        <div className={styles.body}>
-          <p>Content goes here...</p>
-        </div>
-
-        <div className={styles.footer}>
-          <button
-            className={styles.btnSecondary}
-            onClick={() => setActive(false)}
-          >
-            Закрыть
-          </button>
-          <button
-            className={styles.btnPrimary}
-            onClick={() => {
-              setActive(false);
-            }}
-          >
-            Сохранить
-          </button>
-        </div>
+        <div className={styles.body}>{children}</div>
       </div>
     </div>
   );

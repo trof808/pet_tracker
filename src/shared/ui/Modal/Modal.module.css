@@ -26,6 +26,7 @@
   width: 50vh;
   transform: scale(0.5);
   transition: 0.4s all;
+  box-sizing: border-box;
 }
 
 .content.active {
@@ -40,6 +41,11 @@
   border-bottom: 1px solid #837be1;
 }
 
+.body {
+  text-align: left;
+  color: black;
+}
+
 .title {
   font-size: 18px;
   color: black;
@@ -52,36 +58,4 @@
   padding: 0;
   color: #837be1;
   cursor: pointer;
-}
-
-.body {
-  text-align: left;
-  color: black;
-  border-bottom: 1px solid #837be1;
-}
-
-.footer {
-  display: flex;
-  justify-content: flex-end;
-  padding: 12px 0;
-}
-
-.btnSecondary,
-.btnPrimary {
-  margin-left: 8px;
-  padding: 6px 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.btnSecondary {
-  background: #dad8f2;
-  color: grey;
-}
-
-.btnPrimary {
-  background: #837be1;
-  color: #fff;
 }

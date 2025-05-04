@@ -1,0 +1,86 @@
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px 0;
+}
+
+.btnSecondary,
+.btnPrimary {
+  margin-left: 8px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btnSecondary {
+  background: #dad8f2;
+  color: grey;
+}
+
+.btnPrimary {
+  background: #837be1;
+  color: #fff;
+}
+
+.form {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input {
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  font-size: 15px;
+  outline: none;
+  border: 2px solid transparent;
+  transition: border-color .3s;
+  background-color: #DAD8F2;
+  color: black;
+  border-radius: 4px;
+}
+
+.input:focus {
+  border-color: #837be1;
+}
+
+.label {
+  font-size: 15px;
+}
+
+.select {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 15px;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color .3s;
+  background-color: #DAD8F2;
+  color: black;
+}
+
+.select:focus {
+  border-color: #837be1;
+}
+
+.colorInput {
+  height: 30px;
+  width: 100%;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  background-color: #DAD8F2;
+}
+
+.colorInput:focus {
+  border-color: #837be1;
+}
+
+.inputError {
+  border-color: tomato;
+}
