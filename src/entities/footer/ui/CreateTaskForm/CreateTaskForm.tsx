@@ -2,6 +2,7 @@ import { JSX } from 'react';
 import styles from './CreateTaskForm.module.css';
 import { useForm } from 'react-hook-form';
 import cn from 'classnames';
+import { RequestEventData } from '../../../events/services/eventApiTypes';
 
 type Form = {
   card_title: string;
@@ -16,15 +17,23 @@ type Form = {
 
 export const CreateTaskForm = ({
   onClose,
+  isPending,
+  mutate,
 }: {
   onClose: (active: boolean) => void;
+  isPending: boolean;
+  mutate: (data: RequestEventData) => void;
 }): JSX.Element => {
-  const { register, handleSubmit, formState: { errors } } = useForm<Form>();
-  console.log(errors);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Form>();
 
   // потом будет обработчик приходить из фичи и отправлять данные.
-  const onSubmit = (data: Form) => {
-    console.log(data);
+  const onSubmit = async (data: Form) => {
+    await mutate(data);
+    onClose(false);
   };
 
   return (
@@ -110,7 +119,11 @@ export const CreateTaskForm = ({
         >
           Закрыть
         </button>
-        <button type="submit" className={styles.btnPrimary}>
+        <button
+          type="submit"
+          className={styles.btnPrimary}
+          disabled={isPending}
+        >
           Сохранить
         </button>
       </div>
