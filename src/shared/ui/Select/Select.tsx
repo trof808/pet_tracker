@@ -1,5 +1,6 @@
 import { JSX, useState, useRef, useEffect } from 'react';
 import styles from './Select.module.css';
+import { useClickOutside } from './hooks/useClickOutside';
 
 type SelectProps = {
   selectedValue: string;
@@ -14,6 +15,8 @@ export const Select = ({
 }: SelectProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
   const hiddenSelectRef = useRef<HTMLSelectElement>(null);
+  const selectRef = useRef<HTMLDivElement>(null);
+  useClickOutside(selectRef, () => setIsOpen(false));
 
   const handleToggle = () => {
     setIsOpen((prev) => !prev);
@@ -31,7 +34,7 @@ export const Select = ({
   }, [selectedValue]);
 
   return (
-    <div className={styles.selectContainer} data-state={isOpen ? 'active' : ''}>
+    <div className={styles.selectContainer} data-state={isOpen ? 'active' : ''} ref={selectRef}>
       <select
         ref={hiddenSelectRef}
         className={styles.hiddenSelect}
