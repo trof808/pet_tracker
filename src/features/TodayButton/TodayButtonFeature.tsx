@@ -2,13 +2,10 @@ import { JSX } from "react";
 import { TodayButton } from "../../entities/calendar/ui/TodayButton/TodayButton";
 import { setDate } from "../../entities/calendar/store/filtersSlice";
 import { useDispatch } from "react-redux";
-
-
-// тут в дальнейшем опять же будет связь с хранилищем
-// при клике на кнопку, будет перемещение в слайдере к сегодняшнему числу и, скорее всего, обновление состояния 
+import { format } from "date-fns";
 
 export const TodayButtonFeature = (): JSX.Element => {
-  const todayDate = new Date().toISOString().split('T')[0]; 
+  const todayDate = format(new Date(), 'yyyy-MM-dd');
   const dispatch = useDispatch();
 
   const onClick = () => {
