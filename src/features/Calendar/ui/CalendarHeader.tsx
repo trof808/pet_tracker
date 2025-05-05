@@ -6,9 +6,9 @@ import { getCardHeight } from '../../../entities/events/ui/EventCard/utils/cardH
 
 type CalendarHeaderProps = {
   allDayTasks: Task[];
-  handleTaskClick: (id: string) => void;
-  handleTaskDelete: (id: string) => void;
-  handleTaskDone: (id: string) => void;
+  handleTaskClick: (id: number) => void;
+  handleTaskDelete: (id: number) => void;
+  handleTaskDone: (id: number) => void;
 };
 
 export const CalendarHeader = ({

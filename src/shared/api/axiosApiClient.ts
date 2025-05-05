@@ -19,7 +19,10 @@ export const createAxiosClient = (baseURL: string): ApiClient => {
             const response = await client.post<T>(url, data, mapConfig(config));
             return response.data;
         },
-        // put: () => {},
+        put: async <T>(url: string, data?: unknown, config?: RequestConfig) => {
+            const response = await client.put<T>(url, data, mapConfig(config));
+            return response.data;
+        },
         // delete: () => {},
     };
 };

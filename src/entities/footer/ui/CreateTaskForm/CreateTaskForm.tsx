@@ -30,7 +30,6 @@ export const CreateTaskForm = ({
     formState: { errors },
   } = useForm<Form>();
 
-  // потом будет обработчик приходить из фичи и отправлять данные.
   const onSubmit = async (data: Form) => {
     await mutate(data);
     onClose(false);

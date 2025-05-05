@@ -21,16 +21,16 @@ export type StartDateTime = string | null;
 export type EndDateTime = string | null;
 
 export type EventCardProps = {
-  id: string;
+  id: number;
   status: EventCardStatus;
   cardTitle: string;
   tag: TagType;
   startDateTime: StartDateTime;
   endDateTime: EndDateTime;
   height: string;
-  onClick: (id: string) => void;
-  onDelete: (id: string) => void;
-  onDone: (id: string) => void;
+  onClick: (id: number) => void;
+  onDelete: (id: number) => void;
+  onDone: (id: number) => void;
   compact?: boolean;
 };
 

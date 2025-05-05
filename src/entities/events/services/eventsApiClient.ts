@@ -11,7 +11,13 @@ const eventApiService = (ApiClient: ApiClient) => {
     },
     createTask: async (data: RequestEventData) => {
       return await ApiClient.post('/api/v1/tasks', data);
-    }
+    },
+    updateTask: async (task_id: number, data: RequestEventData) => {
+      return await ApiClient.put(`/api/v1/tasks/${task_id}/edit`, data);
+    },
+    getInfo: async (task_id: number) => {
+      return await ApiClient.get(`/api/v1/tasks/${task_id}/info`);
+    },
   };
 };
 

@@ -6,7 +6,7 @@ export type RequestEventData = {
   tag: {
     title: string,
     color: string,
-  }
-  start_date_time: string,
+  },
+  start_date_time: string ,
   end_date_time: string,
 }
