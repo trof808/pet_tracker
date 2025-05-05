@@ -1,8 +1,9 @@
-import { JSX } from 'react';
+import React, { JSX } from 'react';
 import styles from './CalendarDateSliderItem.module.css';
 import cn from 'classnames';
 
 type CalendarDateSliderItemProps = {
+  ref: React.Ref<HTMLDivElement>;
   day: number;
   weekday: string;
   selectedDay: number;
@@ -10,6 +11,7 @@ type CalendarDateSliderItemProps = {
 };
 
 export const CalendarDateSliderItem = ({
+  ref,
   day,
   weekday,
   selectedDay,
@@ -17,6 +19,7 @@ export const CalendarDateSliderItem = ({
 }: CalendarDateSliderItemProps): JSX.Element => {
   return (
     <div
+      ref={ref}
       className={cn(styles.dateItem, {
         [styles.active]: selectedDay === day,
       })}
