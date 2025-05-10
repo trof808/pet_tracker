@@ -4,7 +4,7 @@ import { EventCardProps, EventCardStatus } from '../EventCard';
 import { EventTag } from './EventTag';
 import { EventDateTime } from './EventDateTime';
 
-export type IDs = string;
+export type IDs = number;
 
 type EventVisibleProps = EventCardProps & {
   elementRef: React.RefObject<HTMLDivElement | null>;

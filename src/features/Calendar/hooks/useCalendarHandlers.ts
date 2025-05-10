@@ -1,10 +1,17 @@
-import { useCallback, useEffect, useState } from 'react';
-import { EndDateTime, EventCardStatus, StartDateTime, TagType } from '../../../entities/events/ui/EventCard/EventCard';
-import { useGetEvents } from './useGetEvents';
+import { useCallback } from 'react';
+import {
+  EndDateTime,
+  EventCardStatus,
+  StartDateTime,
+  TagType,
+} from '../../../entities/events/ui/EventCard/EventCard';
+import { useGetEvents } from '../../../entities/events/hooks/useGetEvents';
 import { useSelector } from 'react-redux';
+import { useUpdateEvent } from '../../../entities/events/hooks/useUpdateEvent';
+import { getEventInfo } from '../../../entities/events/hooks/useGetEventInfo';
 
 export type Task = {
-  id: string;
+  id: number;
   status: EventCardStatus;
   cardTitle: string;
   tag: TagType;
@@ -14,64 +21,56 @@ export type Task = {
 
 type useCalendarHandlersReturn = {
   tasks: Task[];
-  handleTaskClick: (id: string) => void;
-  handleTaskDelete: (id: string) => void;
-  handleTaskDone: (id: string) => void;
+  handleTaskClick: (id: number) => void;
+  handleTaskDelete: (id: number) => void;
+  handleTaskDone: (id: number) => void;
   allDayTasks: Task[];
 };
 
 export const useCalendarHandlers = (): useCalendarHandlersReturn => {
-  const currentDate = useSelector(({ filters }: { filters: {date: string}}) => filters.date);
-  const tasksData = useGetEvents(currentDate);
-
-  const [tasks, setTasks] = useState<Task[]>([]);  
-
+  const currentDate = useSelector(
+    ({ filters }: { filters: { date: string } }) => filters.date
+  );
+  const tasks = useGetEvents({ date: currentDate });
   const allDayTasks = tasks.filter(
     (task) => !task.startDateTime && !task.endDateTime
   );
 
-  useEffect(() => {
-      setTasks(tasksData);
-  }, [tasksData]);
+  const { updateTask } = useUpdateEvent();
 
-  // Можно в useCallback
-  const handleTaskDone = useCallback((id: string): void => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
-        task.id === id
-          ? {
-              ...task,
-              status:
-                task.status === EventCardStatus.Done
-                  ? EventCardStatus.Backlog
-                  : EventCardStatus.Done,
-            }
-          : task
-      )
-    );
-  }, []);
+  const handleTaskDone = useCallback(async (id: number): Promise<void> => {
+    const taskInfo = await getEventInfo({ task_id: id });
 
-  // Можно в useCallback
-  const handleTaskClick = useCallback((id: string): void => {
+    updateTask({
+      id,
+      data: {
+        ...taskInfo,
+        status:
+          taskInfo.status === EventCardStatus.Done
+            ? EventCardStatus.Backlog
+            : EventCardStatus.Done,
+      },
+    });
+  }, [updateTask]);
+
+  const handleTaskClick = useCallback((id: number): void => {
     console.log(`Задача #${id} кликнута`);
   }, []);
 
-  // Можно в useCallback
-  const handleTaskDelete = useCallback((id: string): void => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
-        task.id === id
-          ? {
-              ...task,
-              status:
-                task.status === EventCardStatus.Canceled
-                  ? EventCardStatus.Backlog
-                  : EventCardStatus.Canceled,
-            }
-          : task
-      )
-    );
-  }, []);
+  const handleTaskDelete = useCallback(async (id: number): Promise<void> => {
+    const taskInfo = await getEventInfo({ task_id: id });
+
+    updateTask({
+      id,
+      data: {
+        ...taskInfo,
+        status:
+          taskInfo.status === EventCardStatus.Canceled
+            ? EventCardStatus.Backlog
+            : EventCardStatus.Canceled,
+      },
+    });
+  }, [updateTask]);
 
   return {
     tasks,

@@ -1,9 +1,9 @@
 import { JSX } from 'react';
 import { useFormik } from 'formik';
-import { useSignIn } from './lib/hooks/useSignIn';
+import { useSignIn } from './hooks/useSignIn';
 import { LoginForm } from '../../entities/auth/ui/LoginForm/LoginForm';
 import { useTranslation } from 'react-i18next';
-import { LoginValidationSchema } from './lib/LoginValidationSchema';
+import { LoginValidationSchema } from './utils/LoginValidationSchema';
 
 export const Login = (): JSX.Element => {
   const { mutate, isPending } = useSignIn();
@@ -14,7 +14,6 @@ export const Login = (): JSX.Element => {
       email: '',
       password: '',
     },
-    // Можно вынести валидацию в функцию
     validationSchema: LoginValidationSchema,
     onSubmit: async (values) => {
       await mutate(values);

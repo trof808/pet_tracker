@@ -1,4 +1,4 @@
-import { JSX, useEffect, useState } from "react";
+import { JSX, useEffect, useState } from 'react';
 import styles from '../Calendar.module.css';
 
 // Константы можно вынести выше компонента
@@ -10,7 +10,6 @@ const MIN_LINE_POSITION = 92;
 
 export const TimeLine = (): JSX.Element => {
   const [topPosition, setTopPosition] = useState(0);
-  
 
   const updateLinePosition = () => {
     const now = new Date();
@@ -27,17 +26,16 @@ export const TimeLine = (): JSX.Element => {
   };
 
   useEffect(() => {
-    updateLinePosition()
+    updateLinePosition();
     const timerId = setInterval(() => {
       updateLinePosition();
-    }, ONE_MINUTE)
+    }, ONE_MINUTE);
 
     // Очищаем чтобы не было утечек памяти
-    return () => clearInterval(timerId)
+    return () => clearInterval(timerId);
   }, []);
 
-
   return (
-    <div className={styles.timeLine} style={{ top: `${topPosition}px`}} />
-  )
-}
+    <div className={styles.timeLine} style={{ top: `${topPosition}px` }} />
+  );
+};

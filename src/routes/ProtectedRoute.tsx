@@ -1,6 +1,6 @@
 import { JSX, ReactNode, useEffect } from 'react';
 import { useRouter } from '@tanstack/react-router';
-import { useCheckAuth } from '../features/AppHeader/lib/hooks/useCheckAuth';
+import { useCheckAuth } from '../features/AppHeader/hooks/useCheckAuth';
 
 type ProtectedRouteProps = {
   children: ReactNode;

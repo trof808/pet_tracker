@@ -1,8 +1,8 @@
-import { eachDayOfInterval, endOfMonth, format, startOfMonth } from 'date-fns';
+import { eachDayOfInterval, endOfMonth, format, getDate, getMonth, getYear, startOfMonth } from 'date-fns';
 import { ru } from 'date-fns/locale';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { FiltersDate, setDate } from '../../../store/slices/filtersSlice';
+import { FiltersDate, setDate } from '../../../entities/calendar/store/filtersSlice';
 
 export type useSelectCurrentDayReturn = {
   formattedDates: { day: number; weekday: string }[],
@@ -11,25 +11,31 @@ export type useSelectCurrentDayReturn = {
 }
 
 export const useSelectCurrentDay = (): useSelectCurrentDayReturn => {
-  const currentDate = useSelector(({ filters }: { filters: { date: FiltersDate }}) => filters.date);
+  const isoDate = useSelector(({ filters }: { filters: { date: FiltersDate }}) => filters.date);
   const dispatch = useDispatch();
 
-  const [yearStr, monthStr, dayStr] = currentDate.split('-');
-  const selectedDay = parseInt(dayStr);
+  const dateObj = new Date(isoDate);
+  const year = getYear(dateObj);
+  const month = getMonth(dateObj);
+  const day = getDate(dateObj);
+  
+  const selectedDay = day;
 
   const dates = eachDayOfInterval({
-    start: startOfMonth(new Date(currentDate)),
-    end: endOfMonth(new Date(currentDate)),
+    start: startOfMonth(dateObj),
+    end: endOfMonth(dateObj),
   });
+
   const formattedDates = dates.map((date) => ({
-    day: parseInt(format(date, 'd')),
+    day: getDate(date),
     weekday: format(date, 'EEEEEE', { locale: ru }),
   }));
 
   const handleDateClick = (day: number) => {
-    const newDayStr = day.toString().padStart(2, '0');
-    const newDate = `${yearStr}-${monthStr}-${newDayStr}`;
-    dispatch(setDate(newDate));
+    const newDate = new Date(year, month, day);
+    const newIso = format(newDate, 'yyyy-MM-dd');
+    if (day === selectedDay) return;
+    dispatch(setDate(newIso));
   };
 
   return { formattedDates, selectedDay, handleDateClick };

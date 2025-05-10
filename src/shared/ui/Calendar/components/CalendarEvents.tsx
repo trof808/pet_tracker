@@ -4,13 +4,13 @@ import { EventCard } from '../../../../entities/events/ui/EventCard/EventCard';
 import { getCardHeight } from '../../../../entities/events/ui/EventCard/utils/cardHeight';
 import { getEventTopOffset } from '../../../../entities/events/ui/EventCard/utils/EventTopOffset';
 import { getCardWidthAndLeftOffset } from '../../../../entities/events/ui/EventCard/utils/cardWithAndLeftOffset';
-import { Task } from '../../../../features/Calendar/lib/hooks/useCalendarHandlers';
+import { Task } from '../../../../features/Calendar/hooks/useCalendarHandlers';
 
 export type CalendarEventsProps = {
   tasks: Task[];
-  handleTaskClick: (id: string) => void;
-  handleTaskDelete: (id: string) => void;
-  handleTaskDone: (id: string) => void;
+  handleTaskClick: (id: number) => void;
+  handleTaskDelete: (id: number) => void;
+  handleTaskDone: (id: number) => void;
 };
 
 export const CalendarEvents = ({

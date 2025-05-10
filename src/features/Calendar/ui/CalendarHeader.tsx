@@ -1,14 +1,14 @@
 import { JSX } from 'react';
 import styles from '../Calendar.module.css';;
 import { EventCard } from '../../../entities/events/ui/EventCard/EventCard';
-import { Task } from '../lib/hooks/useCalendarHandlers';
 import { getCardHeight } from '../../../entities/events/ui/EventCard/utils/cardHeight';
+import { Task } from '../hooks/useCalendarHandlers';
 
 type CalendarHeaderProps = {
   allDayTasks: Task[];
-  handleTaskClick: (id: string) => void;
-  handleTaskDelete: (id: string) => void;
-  handleTaskDone: (id: string) => void;
+  handleTaskClick: (id: number) => void;
+  handleTaskDelete: (id: number) => void;
+  handleTaskDone: (id: number) => void;
 };
 
 export const CalendarHeader = ({

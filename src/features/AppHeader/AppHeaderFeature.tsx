@@ -1,9 +1,8 @@
 import { JSX } from "react"
-import { AppHeaderUi } from "../../entities/appheader/ui/AppHeader/AppHeaderUi"
-import { useCheckAuth } from "./lib/hooks/useCheckAuth";
+import { AppHeaderUi } from "./ui/AppHeader/AppHeaderUi"
+import { useCheckAuth } from "./hooks/useCheckAuth";
 
 export const AppHeaderFeature = (): JSX.Element => {
-  // будем передавать данные через пропсы для аватарки и имени пользователя
   const userInfo = useCheckAuth();
 
   return (

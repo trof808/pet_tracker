@@ -8,9 +8,9 @@ import { Task } from '../hooks/useCalendarHandlers';
 
 export type CalendarEventsProps = {
   tasks: Task[];
-  handleTaskClick: (id: string) => void;
-  handleTaskDelete: (id: string) => void;
-  handleTaskDone: (id: string) => void;
+  handleTaskClick: (id: number) => void;
+  handleTaskDelete: (id: number) => void;
+  handleTaskDone: (id: number) => void;
 };
 
 export const CalendarEvents = ({
